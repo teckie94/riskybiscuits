@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-book"></i>
         </div>
-        <div  class="sidebar-brand-text mx-3">Cafe Fauna</div>
+        <div  class="sidebar-brand-text mx-3">Cafe</div>
     </a>
 
     <!-- Divider -->
