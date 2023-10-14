@@ -7,3 +7,10 @@
 
 
 
+# Install lavarel on windows
+
+- Youtube guide - https://www.youtube.com/watch?v=pd3pmxvpvPI
+
+- Install PHP (version 8.1) - https://windows.php.net/downloads/releases/php-8.1.24-Win32-vs16-x64.zip
+- Install PHP Composer - https://getcomposer.org
+- Install Laravel
