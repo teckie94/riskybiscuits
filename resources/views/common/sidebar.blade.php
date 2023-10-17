@@ -21,7 +21,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('Manager'))
+    @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner'))
 
     <div class="sidebar-heading">
         Management
@@ -54,18 +54,18 @@
     @if(auth()->user()->hasRole('SuperAdmin'))
     <!-- Heading -->
     <div class="sidebar-heading">
-        Cafes
+        Cafe
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cafes"
             aria-expanded="true" aria-controls="cafes">
             <i class="fas fa-table"></i>
-            <span>Manage Cafes</span>
+            <span>Manage Cafe</span>
         </a>
         <div id="cafes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('cafes.viewcafe') }}">View Cafes</a>
+                <a class="collapse-item" href="{{ route('cafes.viewcafe') }}">View Timeslot</a>
                 <a class="collapse-item" href="{{ route('cafes.createcafe') }}">Add New Cafe</a>
                 <a class="collapse-item" href="{{ route('cafes.archive') }}">Deleted Cafes</a>
                 <a class="collapse-item" href="{{ route('cafes.import') }}">Import Cafes</a>

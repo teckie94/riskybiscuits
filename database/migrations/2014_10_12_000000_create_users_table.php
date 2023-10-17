@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile_number')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('role_id')->default(3)->comment('1=SuperAdmin, 2=CafeOwner, 3=Manager');
+            $table->integer('role_id')->default(3)->comment('1=SuperAdmin, 2=CafeOwner, 3=Manager, 4=Staff');
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
