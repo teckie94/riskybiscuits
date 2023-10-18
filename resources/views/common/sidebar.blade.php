@@ -65,7 +65,7 @@
         </a>
         <div id="cafes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('cafes.viewcafe') }}">View Timeslot</a>
+                <a class="collapse-item" href="{{ route('cafes.viewcafe') }}">View Timeslots</a>
                 <a class="collapse-item" href="{{ route('cafes.createcafe') }}">Add New Cafe</a>
                 <a class="collapse-item" href="{{ route('cafes.archive') }}">Deleted Cafes</a>
                 <a class="collapse-item" href="{{ route('cafes.import') }}">Import Cafes</a>
