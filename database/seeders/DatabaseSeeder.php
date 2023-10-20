@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 
 use App\Models\Cafes;
+use App\Models\WorkSlot;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,8 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class,
+            StaffRoleSeeder::class,
+            WorkSlotSeeder::class,
         ]);
 
         Cafes::factory(5)->create();
