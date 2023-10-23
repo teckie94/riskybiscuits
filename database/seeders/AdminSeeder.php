@@ -46,11 +46,29 @@ class AdminSeeder extends Seeder
 
         $user = User::create([
             'first_name'    => 'Cafe',
-            'last_name'     => 'Staff',
-            'email'         =>  'staff@gmail.com',
+            'last_name'     => 'Staff 1',
+            'email'         =>  'staff1@gmail.com',
+            'mobile_number' =>  '83358421',
+            'password'      =>  Hash::make('111'),
+            'role_id'       => 4
+        ]);
+
+        $user = User::create([
+            'first_name'    => 'Cafe',
+            'last_name'     => 'Staff 2',
+            'email'         =>  'staff2@gmail.com',
+            'mobile_number' =>  '83358422',
+            'password'      =>  Hash::make('111'),
+            'role_id'       => 4
+        ]);
+
+        $user = User::create([
+            'first_name'    => 'Cafe',
+            'last_name'     => 'Staff 3',
+            'email'         =>  'staff3@gmail.com',
             'mobile_number' =>  '83358423',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 3
+            'role_id'       => 4
         ]);
     }
 }
