@@ -30,21 +30,21 @@ class WorkSlotSeeder extends Seeder
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 1,
+            'quantity' => 1,
         ]);
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 2,
+            'quantity' => 1,
         ]);
 
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 3,
+            'quantity' => 1,
         ]);
 
         $start_datetime->setTime(13,30);
@@ -52,20 +52,20 @@ class WorkSlotSeeder extends Seeder
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 1,
+            'quantity' => 1,
         ]);
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 2,
+            'quantity' => 1,
         ]);
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 3,
+            'quantity' => 1,
         ]);
 
         $start_datetime->setTime(18,30);
@@ -73,20 +73,20 @@ class WorkSlotSeeder extends Seeder
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 1,
+            'quantity' => 1,
         ]);
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 2,
+            'quantity' => 1,
         ]);
         $workslot = WorkSlot::create([
             'start_datetime' => $start_datetime,
             'end_datetime'=> $end_datetime,
-            'cafe_id' => 1,
             'staff_role_id' => 3,
+            'quantity' => 1,
         ]);
 
     }

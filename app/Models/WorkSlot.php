@@ -5,19 +5,40 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class WorkSlot extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
+
+    protected $dates = ['start_datetime','end_datetime'];
     protected $fillable = [
-        'start_date',
-        'start_time',
-        'end_date',
-        'end_time',
-        'cafe_id',
+        'start_datetime',
+        'end_datetime',
         'staff_role_id',
+        'quantity',
     ];
+
+    //One to One Relationship
+    //Each Work Slot can be created by one user
+    public function users() : BelongsTo{
+        return $this->belongsTo(User::class,'id','user_id');
+    }
+
+    //One To Many Relationships
+    //Each Work Slot is for One Staff Role
+    public function staffRole():HasOne
+    {
+        return $this->hasOne(StaffRole::class);
+    }
+    //Each Work Slot has many Work Slot Bids
+    public function workSlotBid(): HasMany
+    {
+        return $this->hasMany(WorkSlotBid::class);
+    }
+
 }
