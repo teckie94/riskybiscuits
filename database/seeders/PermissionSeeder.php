@@ -53,14 +53,6 @@ class PermissionSeeder extends Seeder
             'staffworkslot-create',
             'staffworkslot-edit',
             'staffworkslot-delete',
-            'workslotbid-list',
-            'workslotbid-create',
-            'workslotbid-edit',
-            'workslotbid-delete',
-            'staffrolebid-list',
-            'staffrolebid-create',
-            'staffrolebid-edit',
-            'staffrolebid-delete',
         ];
         foreach($managerpermissions as $permission){
             Permission::create([
@@ -71,7 +63,7 @@ class PermissionSeeder extends Seeder
         //Only StaffWorkslot permissions
         $permissions_saved =[];
         foreach(Permission::all() as $permission){
-            if(str_contains($permission->name, 'staffworkslot')||(str_contains($permission->name, 'bid')))
+            if(str_contains($permission->name, 'staffworkslot'))
                 array_push($permissions_saved,$permission->id);
         }
         //Assign Manager Role staffworkslot permissions
@@ -81,6 +73,25 @@ class PermissionSeeder extends Seeder
         //Manager Role Sync Permission
         $user = User::where('role_id', 3)->first();
         $user->assignRole($role->id);
+
+
+        //CafeStaff Role Permissions
+        $cafestaffpermissions=[
+            'workslotbid-list',
+            'workslotbid-create',
+            'workslotbid-edit',
+            'workslotbid-delete',
+            'staffrolebid-list',
+            'staffrolebid-create',
+            'staffrolebid-edit',
+            'staffrolebid-delete',
+        ];
+        //Create CafeStaff Role Permissions
+        foreach($cafestaffpermissions as $permission){
+            Permission::create([
+                'name' => $permission
+            ]);
+        }
 
         //Only bidding permissions
         $permissions_saved =[];

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
-            $table->integer('staff_role_id');
-            $table->integer('quantity');
+            $table->integer('cafe_id')->nullable();
+            $table->integer('staff_role_id')->nullable();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
