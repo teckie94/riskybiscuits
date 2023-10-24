@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\StaffRole;
+use App\Models\StaffRoles;
 
 class StaffRoleSeeder extends Seeder
 {
@@ -14,17 +14,17 @@ class StaffRoleSeeder extends Seeder
      */
     public function run()
     {
-        StaffRole::create([
+        StaffRoles::create([
             'name' => 'Chef',
             'role_id' => '4'
         ]);
 
-        StaffRole::create([
+        StaffRoles::create([
             'name' => 'Waiter',
             'role_id' => '4'
         ]);
 
-        StaffRole::create([
+        StaffRoles::create([
             'name' => 'Cashier',
             'role_id' => '4'
         ]);
