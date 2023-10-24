@@ -17,8 +17,10 @@ class WorkSlot extends Model
 
     protected $dates = ['start_datetime','end_datetime'];
     protected $fillable = [
-        'start_datetime',
-        'end_datetime',
+        'time_slot_name',
+        'date',
+        'start_time',
+        'end_time',
         'staff_role_id',
         'quantity',
     ];
@@ -39,6 +41,10 @@ class WorkSlot extends Model
     public function workSlotBid(): HasMany
     {
         return $this->hasMany(WorkSlotBid::class);
+    }
+
+    public function role() {
+        return $this->belongsTo('App\Models\StaffRoles', 'staff_role_id');
     }
 
 }

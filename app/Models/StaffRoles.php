@@ -21,19 +21,20 @@ class StaffRoles extends Model
 
     //One To Many Relationships
     //Each staff role has many users
-    public function users(): HasMany
-    {
+    public function users(): HasMany {
         return $this->hasMany(User::class);
     }
     //Each Staff Role has many Staff Role Bids from users
-    public function staffRoleBids(): HasMany
-    {
+    public function staffRoleBids(): HasMany {
         return $this->HasMany(StaffRoleBid::class);
     }
     
     //One To Many (Inverse) / Belongs To Relationship
-    public function workSlots():BelongsTo{
+    public function workSlots():BelongsTo {
         return $this->belongsTo(WorkSlot::class);
     }
 
+    public function workSlots2() {
+        return $this->hasMany('App\Models\WorkSlot');
+    }
 }
