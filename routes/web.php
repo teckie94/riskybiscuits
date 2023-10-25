@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CafesController;
 use App\Http\Controllers\StaffRoleBidController;
 use App\Http\Controllers\WorkSlotBidController;
+use App\Http\Controllers\WorkSlotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,20 @@ Route::middleware('auth')->prefix('cafes')->name('cafes.')->group(function(){
 });
 
 
+//Staff Role Bids
+Route::resource('staffrolebids', StaffRoleBidController::class);
 
 //Work Slot Bids
 Route::resource('workslotbids', WorkSlotBidController::class);
+
+
+//Workslots
+Route::middleware(['auth'])->prefix('workslots')->name('workslot.')->group(function() {
+    Route::get('/', [WorkSlotController::class, 'index'])->name('index');
+    Route::get('/create', [WorkSlotController::class, 'create'])->name('create');
+    Route::post('/store', [WorkSlotController::class, 'store'])->name('store');
+    Route::get('/{workSlot}/edit', [WorkSlotController::class, 'edit'])->name('edit');
+    Route::put('/{workSlot}', [WorkSlotController::class, 'update'])->name('update');
+    Route::delete('/{workSlot}', [WorkSlotController::class, 'destroy'])->name('destroy');
+    
+});

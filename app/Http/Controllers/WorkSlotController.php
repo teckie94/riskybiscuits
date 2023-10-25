@@ -69,7 +69,7 @@ class WorkSlotController extends Controller
 
 
 
-    public function updateworkslot(Request $request, WorkSlot $workSlot)
+    public function edit(Request $request, WorkSlot $workSlot)
         {
             $request->validate([
                 'staff_role_id'             => 'required',
