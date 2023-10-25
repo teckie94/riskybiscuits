@@ -30,6 +30,24 @@
             <div class="card-body">
                 <div class="form-group row">
 
+
+                    {{-- Staff Role --}}
+                    <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                        <span style="color:red;">*</span>Staff Role</label>
+                        <input 
+                            type="date" 
+                            class="form-control form-control-user @error('date') is-invalid @enderror" 
+                            id="date"
+                            placeholder="Date" 
+                            name="date" 
+                            value="{{ old('date') ?  old('date') : $workSlot->date}}">
+
+                        @error('date')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+
+
                     {{-- Date --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Date</label>
@@ -78,13 +96,29 @@
                         @enderror
                     </div>
 
+                    {{-- Staff Required --}}
+                    <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                        <span style="color:red;">*</span>Staff Required</label>
+                        <input 
+                            type="text" 
+                            class="form-control form-control-user @error('quantity') is-invalid @enderror" 
+                            id="quantity"
+                            placeholder="Total Staff Required" 
+                            name="quantity" 
+                            value="{{ old('quantity') ?  old('quantity') : $workSlot->quantity}}">
+
+                        @error('quantity')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+
 
                 </div>
             </div>
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-success btn-user float-right mb-3">Update</button>
-                <a class="btn btn-primary float-right mr-3 mb-3" href="{{ route('cafes.viewcafe') }}">Cancel</a>
+                <a class="btn btn-primary float-right mr-3 mb-3" href="{{ route('workslot.index') }}">Cancel</a>
             </div>
         </form>
     </div>

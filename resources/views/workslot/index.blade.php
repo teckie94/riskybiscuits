@@ -51,7 +51,7 @@
                             <td>{{ $workslot->quantity }}</td>
 
                             <td style="display: flex">
-                                <a href="{{-- {{ route('cafes.editcafe', ['cafe' => $workslot->id]) }} --}}"
+                                <a href="{{ route('workslot.edit', ['workSlot' => $workslot->id]) }}"
                                     class="btn-sm btn-primary m-2">
                                     <i class="fa fa-pen"></i>
                                 </a>
