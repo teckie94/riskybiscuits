@@ -23,57 +23,57 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Edit Workslot</h6>
         </div>
-        <form method="POST" action="{{route('workslot.edit', ['workSlot' => $workSlot->id])}}">
+        <form method="POST" action="{{route('workslot.update', ['workSlot' => $workSlot->id])}}">
             @csrf
             @method('PUT')
 
             <div class="card-body">
                 <div class="form-group row">
 
-                    {{-- First Name --}}
+                    {{-- Date --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
-                        <span style="color:red;">*</span>Name</label>
+                        <span style="color:red;">*</span>Date</label>
                         <input 
-                            type="text" 
-                            class="form-control form-control-user @error('name') is-invalid @enderror" 
-                            id="exampleFirstName"
-                            placeholder="Name" 
-                            name="name" 
-                            value="{{ old('name') ?  old('name') : $cafe->name}}">
+                            type="date" 
+                            class="form-control form-control-user @error('date') is-invalid @enderror" 
+                            id="date"
+                            placeholder="Date" 
+                            name="date" 
+                            value="{{ old('date') ?  old('date') : $workSlot->date}}">
 
-                        @error('name')
+                        @error('date')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
 
-                    {{-- Address --}}
+                    {{-- Start Time --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
-                        <span style="color:red;">*</span>Address</label>
+                        <span style="color:red;">*</span>Start Time</label>
                         <input 
-                            type="text" 
-                            class="form-control form-control-user @error('address') is-invalid @enderror" 
-                            id="address"
-                            placeholder="Address" 
-                            name="address" 
-                            value="{{ old('address') ?  old('address') : $cafe->address}}">
+                            type="time" 
+                            class="form-control form-control-user @error('start_time') is-invalid @enderror" 
+                            id="start_time"
+                            placeholder="Start Time" 
+                            name="start_time" 
+                            value="{{ old('start_time') ?  old('start_time') : $workSlot->start_time}}">
 
-                        @error('address')
+                        @error('start_time')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
 
-                    {{-- Mobile Number --}}
+                    {{-- End Time --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
-                        <label> Number</label>
+                        <span style="color:red;">*</span>End Time</label>
                         <input 
-                            type="text" 
-                            class="form-control form-control-user @error('mobile_number') is-invalid @enderror" 
-                            id="exampleMobile"
-                            placeholder="Mobile Number" 
-                            name="mobile_number" 
-                            value="{{ old('mobile_number') ?  old('mobile_number') : $cafe->mobile_number}}">
+                            type="time" 
+                            class="form-control form-control-user @error('end_time') is-invalid @enderror" 
+                            id="end_time"
+                            placeholder="End Time" 
+                            name="end_time" 
+                            value="{{ old('end_time') ?  old('end_time') : $workSlot->end_time}}">
 
-                        @error('mobile_number')
+                        @error('end_time')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
