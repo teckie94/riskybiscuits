@@ -37,6 +37,9 @@ Route::prefix('profile')->name('profile.')->middleware('auth')->group(function()
 // Roles
 Route::resource('roles', App\Http\Controllers\RolesController::class);
 
+// Staff Roles
+Route::resource('Staff roles', App\Http\Controllers\StaffRolesController::class);
+
 // Permissions
 Route::resource('permissions', App\Http\Controllers\PermissionsController::class);
 
