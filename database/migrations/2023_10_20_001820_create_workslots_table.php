@@ -15,12 +15,16 @@ return new class extends Migration
     {
         Schema::create('work_slots', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('start_datetime');
-            $table->dateTime('end_datetime');
-            $table->integer('cafe_id')->nullable();
-            $table->integer('staff_role_id')->nullable();
+            $table->string('time_slot_name')->default(''); // Example: "Morning Shift," "Afternoon Shift"
+            $table->date('date');
+            $table->time('start_time'); // Example: 09:00:00
+            $table->time('end_time'); // Example: 15:00:00
+            $table->unsignedBigInteger('staff_role_id')->comment('1=Chef, 2=Waiter, 3=Cashier');
+            $table->integer('quantity');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
+
+            $table->foreign('staff_role_id')->references('id')->on('staff_roles');
         });
     }
 
