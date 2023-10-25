@@ -1,4 +1,3 @@
-@@ -1,166 +0,0 @@
 <?php
 
 namespace App\Http\Controllers;
@@ -33,15 +32,26 @@ class WorkSlotBidController extends Controller
      */
     public function index()
     {
-        $workslotbids = WorkSlotBid::paginate(10);
-        $workslots = WorkSlot::paginate(10);
-        $users = User::paginate(10);
+        if(auth()->user()->role_id == 3){
+            $workslotbids = WorkSlotBid::paginate(10);
+            $workslots = WorkSlot::paginate(10);
+            $users = User::paginate(10);
+            return view('workslotbids.index', [
+                'workslotbids' => $workslotbids,
+                'workslots' => $workslots,
+                'users' => $users
+            ]);
+        } else if(auth()->user()->role_id == 4) {
+            $workslotbids = WorkSlotBid::query()->where('user_id', auth()->user()->id)->paginate(10);
+            $workslots = WorkSlot::paginate(10);
+            $users = User::query()->where('id', auth()->user()->id)->paginate(10);
+            return view('workslotbids.index', [
+                'workslotbids' => $workslotbids,
+                'workslots' => $workslots,
+                'users' => $users
+            ]);
+        }
 
-        return view('workslotbids.index', [
-            'workslotbids' => $workslotbids,
-            'workslots' => $workslots,
-            'users' => $users
-        ]);
     }
 
     /**

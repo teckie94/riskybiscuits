@@ -1,4 +1,3 @@
-@@ -1,171 +0,0 @@
 <?php
 
 namespace App\Http\Controllers;
