@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CafesController;
-
+use App\Http\Controllers\StaffRoleBidController;
+use App\Http\Controllers\WorkSlotBidController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,6 @@ Route::middleware('auth')->prefix('cafes')->name('cafes.')->group(function(){
 });
 
 
+
+//Work Slot Bids
+Route::resource('workslotbids', WorkSlotBidController::class);
