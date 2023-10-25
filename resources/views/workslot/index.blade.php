@@ -31,8 +31,8 @@
                     <thead>
                         <tr>
                             {{-- <th width="15%">Shift Name</th> --}}
-                            <th width="15%">Role</th>
                             <th width="15%">Date</th>
+                            <th width="15%">Role</th>
                             <th width="15%">Start Time</th>
                             <th width="15%">End Time</th>
                             <th width="15%">Staff Required</th>
@@ -44,8 +44,8 @@
                         @foreach ($workSlots as $workslot)
                         <tr>
                             {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
-                            <td>{{$workslot->role->name}}</td>
                             <td>{{ $workslot->date }}</td>
+                            <td>{{$workslot->role->name}}</td>
                             <td>{{ $workslot->start_time }}</td>
                             <td>{{ $workslot->end_time }}</td>
                             <td>{{ $workslot->quantity }}</td>

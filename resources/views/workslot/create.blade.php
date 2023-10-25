@@ -15,6 +15,7 @@
 
     {{-- Alert Messages --}}
     @include('common.alert')
+    
    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -59,7 +60,7 @@
 
 
                     {{-- Date --}}
-                    <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                    <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Date</label>
                         <input 
                             type="date" 
@@ -75,11 +76,8 @@
                     </div>
 
 
-                     <!-- Force next columns to break to new line -->
-                     <div class="w-100"></div>
-
                     {{-- Start Time --}}
-                    <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                    <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Start Time</label>
                         <input 
                             type="time" 
@@ -96,7 +94,7 @@
 
                 
                     {{-- End Time --}}
-                    <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                    <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>End Time</label>
                         <input 
                             type="time" 
@@ -111,9 +109,10 @@
                         @enderror
                     </div>
 
+                    
 
                      {{-- Staff Required --}}
-                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                     <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Staff Required</label>
                         <input 
                             type="text" 
