@@ -88,8 +88,9 @@ Route::middleware(['auth'])->prefix('workslots')->name('workslot.')->group(funct
     Route::get('/', [WorkSlotController::class, 'index'])->name('index');
     Route::get('/create', [WorkSlotController::class, 'create'])->name('create');
     Route::post('/store', [WorkSlotController::class, 'store'])->name('store');
-    Route::get('/edit/{workSlot}', [CafesController::class, 'edit'])->name('edit');
-    Route::put('/{workSlot}', [WorkSlotController::class, 'update'])->name('update');
+    Route::get('/edit/{workSlot}', [WorkSlotController::class, 'edit'])->name('edit');
+    Route::put('/update/{workSlot}', [WorkSlotController::class, 'update'])->name('update');
+   /*  Route::put('/{workSlot}', [WorkSlotController::class, 'update'])->name('update'); */
     Route::delete('/{workSlot}', [WorkSlotController::class, 'destroy'])->name('destroy');
     
 });

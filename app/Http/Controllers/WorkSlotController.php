@@ -62,10 +62,16 @@ class WorkSlotController extends Controller
         }
     }
 
-    public function edit(WorkSlot $workSlot)
-    {
+   /*  public function edit(WorkSlot $workSlot) {
+        
         return view('workslot.edit', compact('workSlot'));
+    } */
+
+    public function edit(WorkSlot $workSlot) {
+        $staffRoles = StaffRoles::all(); // Fetch cafe roles from the database
+        return view('workslot.edit', compact('workSlot', 'staffRoles'));
     }
+    
 
 
 
@@ -73,7 +79,7 @@ class WorkSlotController extends Controller
         {
             $request->validate([
                 'staff_role_id'             => 'required',
-                /* 'time_slot_name'         => 'required', */
+                /* 'time_slot_name'            => 'required', */
                 'date'                      => 'required',
                 'start_time'                => 'required',
                 'end_time'                  => 'required',
@@ -81,19 +87,22 @@ class WorkSlotController extends Controller
             ]);
 
             DB::beginTransaction();
+
             try {
                 // Update Data
                 $workSlot->update([
                     'staff_role_id'         => $request->staff_role_id,
-                /* 'time_slot_name'        => $request->time_slot_name, */
-                'date'                  => $request->date,
-                'start_time'            => $request->start_time,
-                'end_time'              => $request->end_time,
-                'quantity'              => $request->quantity,
+                    /* 'time_slot_name'        => $request->time_slot_name, */
+                    'date'                  => $request->date,
+                    'start_time'            => $request->start_time,
+                    'end_time'              => $request->end_time,
+                    'quantity'              => $request->quantity,
                 ]);
 
                 // Commit And Redirected To Listing
                 DB::commit();
+                
+                
                 return redirect()->route('workslot.index')->with('success', 'Workslot Updated Successfully.');
             } catch (\Throwable $th) {
 
@@ -103,18 +112,6 @@ class WorkSlotController extends Controller
             }
         }
 
-
-
-    /* public function update(Request $request, WorkSlot $workSlot)
-    {
-        $request->validate([
-            'staff_role_id' => 'required',
-            'quantity' => 'required',
-        ]);
-
-        $workSlot->update($request->all());
-        return redirect()->route('workslots.index');
-    } */
 
     public function destroy(WorkSlot $workSlot)
     {

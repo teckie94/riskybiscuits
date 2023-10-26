@@ -34,19 +34,12 @@
                     {{-- Staff Role --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Staff Role</label>
-                        <input 
-                            type="date" 
-                            class="form-control form-control-user @error('date') is-invalid @enderror" 
-                            id="date"
-                            placeholder="Date" 
-                            name="date" 
-                            value="{{ old('date') ?  old('date') : $workSlot->date}}">
-
-                        @error('date')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
+                        <select name="staff_role_id" id="staff_role_id" class="form-control">
+                            @foreach($staffRoles as $staffRole)
+                                <option value="{{ $staffRole->id }}" @if($staffRole->id == $workSlot->staff_role_id) selected @endif>{{ $staffRole->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-
 
                     {{-- Date --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
@@ -96,9 +89,9 @@
                         @enderror
                     </div>
 
-                    {{-- Staff Required --}}
+                    {{-- Quantity --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
-                        <span style="color:red;">*</span>Staff Required</label>
+                        <span style="color:red;">*</span>Quantity</label>
                         <input 
                             type="text" 
                             class="form-control form-control-user @error('quantity') is-invalid @enderror" 
@@ -124,6 +117,5 @@
     </div>
 
 </div>
-
 
 @endsection

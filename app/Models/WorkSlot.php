@@ -35,7 +35,7 @@ class WorkSlot extends Model
     //Each Work Slot is for One Staff Role
     public function staffRole():HasOne
     {
-        return $this->hasOne(StaffRole::class);
+        return $this->hasOne(StaffRoles::class);
     }
     //Each Work Slot has many Work Slot Bids
     public function workSlotBid(): HasMany

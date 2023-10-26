@@ -30,7 +30,7 @@
                     {{-- Staff Role Selection --}}
                     <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
                         <div class="form-group">
-                            <span style="color:red;">*</span>Cafe Role</label>
+                            <span style="color:red;">*</span>Staff Role</label>
                             <select name="staff_role_id" id="staff_role_id" class="form-control">
                                 @foreach($staffRoles as $staffRole)
                                     <option value="{{ $staffRole->id }}">{{ $staffRole->name }}</option>
