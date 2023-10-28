@@ -26,15 +26,17 @@
                     <thead>
                         <tr>
                             <th width="20%">Staff Role</th>
-                            <th width="20%">User Name</th>
+                            <th width="30%">User Name</th>
                             <th width="20%">Applied On</th>
                             <th width="20%">Status</th>
-                            <th width="20%">Action</th>
+                            <th width="10%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($staffrolebids as $staffrolebid)
                         <form method="POST" action="{{route('staffrolebids.update', ['staffrolebid' => $staffrolebid->id])}}">   
+                            @csrf
+                            @method('PUT')
                             <tr>
                                 <td>{{$staffroles->find($staffrolebid->staff_role_id)->name}}</td>
                                 <td>{{$users->find($staffrolebid->user_id)->first_name . ' '. $users->find($staffrolebid->user_id)->last_name}}</td>
@@ -49,27 +51,29 @@
                                         Pending Approval
                                     @endif
                                 </td>
-                                <td class="form-control-user" style="display: flex">
                                 @if(auth()->user()->role_id==4)
+                                <td style="display: flex;">
                                     <a href="{{ route('staffrolebids.edit', ['staffrolebid' => $staffrolebid->id]) }}" class="btn btn-primary m-2">
                                         <i class="fa fa-pen"></i>
-                                   </a>
-                                   <form method="POST" action="{{ route('staffrolebids.destroy', ['staffrolebid' => $staffrolebid->id]) }}">
+                                    </a>
+                                    <form method="POST" action="{{ route('staffrolebids.destroy', ['staffrolebid' => $staffrolebid->id]) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger m-2" type="submit">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                   </form>
+                                    </form>
+                                </td>
                                 @elseif(auth()->user()->role_id==3)
+                                <td style="display: flex;">
                                     <button id="btnApprove" type="submit" name="status" value="1" class="btn btn-success m-2">
                                         <i class="fa fa-check"></i>
                                     </button>
                                     <button id="btnReject" type="submit" name="status" value="-1" class="btn btn-danger m-2">
                                         <i class="fa fa-times"></i>
                                     </button>
-                                @endif
                                 </td>
+                                @endif
                             </tr>
                         </form>
                         @endforeach
@@ -79,7 +83,9 @@
             </div>
         </div>
     </div>
-
-
 </div>
 @endsection
+<script type=text/javascript>
+console.log(document.getElementById('dataTable'));
+</script>
+

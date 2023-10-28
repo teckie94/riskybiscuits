@@ -37,7 +37,7 @@ class WorkSlotBidController extends Controller
             $workslots = WorkSlot::paginate(10);
             $users = User::paginate(10);
             return view('workslotbids.index', [
-                'workslotbids' => $workslotbids,
+                'workslotbids' => $workslotbids->sortBy('staff_role_id'),
                 'workslots' => $workslots,
                 'users' => $users
             ]);
@@ -118,41 +118,31 @@ class WorkSlotBidController extends Controller
 //         return view('workslotbids.edit', ['workslotbids' => $workslotbids, 'permissions' => $permissions]);
 //     }
 
-//     /**
-//      * Update the specified resource in storage.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  int  $id
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function update(Request $request, $id)
-//     {
-//         DB::beginTransaction();
-//         try {
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, WorkSlotBid $workslotbid)
+    {
+        // Validate Request
+        $request->validate([
+            'status' => 'required',
+        ]);
 
-//             // Validate Request
-//             $request->validate([
-//                 'name' => 'required',
-//                 'guard_name' => 'required'
-//             ]);
-            
-//             $role = Role::whereId($id)->first();
-
-//             $role->name = $request->name;
-//             $role->guard_name = $request->guard_name;
-//             $role->save();
-
-//             // Sync Permissions
-//             $permissions = $request->permissions;
-//             $role->syncPermissions($permissions);
-            
-//             DB::commit();
-//             return redirect()->route('roles.index')->with('success','Roles updated successfully.');
-//         } catch (\Throwable $th) {
-//             DB::rollback();
-//             return redirect()->route('roles.edit',['role' => $role])->with('error',$th->getMessage());
-//         }
-//     }
+        DB::beginTransaction();
+        try {
+            $workslotbid->status = $request->status;
+            $workslotbid->save();
+            DB::commit();
+            return redirect()->route('workslotbids.index')->with('success','Work Slot Bid updated successfully.');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->route('workslotbids.index',['workslotbid' => $workslotbid])->with('error',$th->getMessage());
+        }
+    }
 
 //     /**
 //      * Remove the specified resource from storage.

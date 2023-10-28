@@ -36,13 +36,15 @@ class StaffRoleBidController extends Controller
             $staffrolebids = StaffRoleBid::paginate(10);
             $staffroles = StaffRoles::paginate(10);
             $users = User::paginate(10);
+
+
             return view('staffrolebids.index', [
                 'staffrolebids' => $staffrolebids,
                 'staffroles' => $staffroles,
                 'users' => $users
             ]);
         } else if(auth()->user()->role_id == 4) {
-            $staffrolebids = StaffRoleBid::query()->where('user_id', auth()->user()->id)->paginate(10);
+            $staffrolebids = StaffRoleBid::where('user_id', auth()->user()->id)->paginate(10);
             $staffroles = StaffRoles::paginate(10);
             $users = User::query()->where('id', auth()->user()->id)->paginate(10);
             return view('staffrolebids.index', [
@@ -91,23 +93,8 @@ class StaffRoleBidController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $role = Role::whereId($id)->with('permissions')->first();
@@ -124,18 +111,16 @@ class StaffRoleBidController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, StaffRoleBid $staffrolebid)
     {
-        DB::beginTransaction();
-        try {
+
 
             // Validate Request
             $request->validate([
                 'status' => 'required',
             ]);
-            
-            $role = Role::whereId($id)->first();
-            $staffrolebid = StaffRoleBid::whereId($request->id);
+        DB::beginTransaction();
+        try {
             $staffrolebid->status = $request->status;
             $staffrolebid->save();
 
