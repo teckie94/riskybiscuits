@@ -104,6 +104,22 @@
                         @enderror
                     </div>
 
+                    {{-- Available Slots --}}
+                    <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                        <span style="color:red;">*</span>Available Slots</label>
+                        <input 
+                            type="text" 
+                            class="form-control form-control-user @error('available_slots') is-invalid @enderror" 
+                            id="exampleSlots"
+                            placeholder="Available Slots" 
+                            name="available_slots" 
+                            value="{{ old('available_slots') }}">
+
+                        @error('available_slots')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+
                     <!-- Password -->
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Password</label>

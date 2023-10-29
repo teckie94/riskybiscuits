@@ -40,9 +40,10 @@
                             <tr>
                                 <th width="20%">Name</th>
                                 <th width="25%">Email</th>
-                                <th width="15%">Mobile</th>
-                                <th width="15%">User Type</th>
-                                <th width="15%">Status</th>
+                                <th width="10%">Mobile</th>
+                                <th width="10%">Roles</th>
+                                <th width="10%">Available Slots</th>
+                                <th width="10%">Status</th>
                                 <th width="10%">Action</th>
                             </tr>
                         </thead>
@@ -53,6 +54,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->mobile_number }}</td>
                                     <td>{{ $user->roles ? $user->roles->pluck('name')->first() : 'N/A' }}</td>
+                                    <td>{{ $user->available_slots }}</td>
                                     <td>
                                         @if ($user->status == 0)
                                             <span class="badge badge-danger">Inactive</span>
