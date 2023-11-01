@@ -24,7 +24,6 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '81818181',
             'password'      =>  Hash::make('111'),
             'role_id'       => 1,
-            'available_slots' => 5
         ]);
 
         $user = User::create([
@@ -34,7 +33,6 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '82828282',
             'password'      =>  Hash::make('111'),
             'role_id'       => 2,
-            'available_slots' => 6
         ]);
 
         $user = User::create([
@@ -44,7 +42,6 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '83838423',
             'password'      =>  Hash::make('111'),
             'role_id'       => 3,
-            'available_slots' => 5
         ]);
 
         $user = User::create([
@@ -54,7 +51,7 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '83358421',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'available_slots' => 5
+            'requested_workslots' => 5
         ]);
 
         $user = User::create([
@@ -64,7 +61,7 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '83358422',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'available_slots' => 5
+            'requested_workslots' => 5
         ]);
 
         $user = User::create([
@@ -74,7 +71,7 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '83358423',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'available_slots' => 5
+            'requested_workslots' => 5
         ]);
     }
 }

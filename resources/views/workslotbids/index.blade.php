@@ -78,13 +78,18 @@
                         @endforeach
                     </tbody>
                 </table>
-
                 {{$workslotbids->links()}}
             </div>
         </div>
     </div>
 
 </div>
+@endsection
 
+@section('scripts')
+
+<!-- tables scripts -->
+@include('common.tables')
+<!-- End of tables scripts -->
 
 @endsection

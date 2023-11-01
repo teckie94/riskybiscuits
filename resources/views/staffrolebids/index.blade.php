@@ -64,7 +64,7 @@
                                         </button>
                                     </form>
                                 </td>
-                                @elseif(auth()->user()->role_id==3)
+                                @elseif((auth()->user()->role_id==3) && ($staffrolebid->status == 0))
                                 <td style="display: flex;">
                                     <button id="btnApprove" type="submit" name="status" value="1" class="btn btn-success m-2">
                                         <i class="fa fa-check"></i>
@@ -73,6 +73,8 @@
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </td>
+                                @elseif((auth()->user()->role_id==3) && ($staffrolebid->status != 0))
+                                    <td>  -  </td>
                                 @endif
                             </tr>
                         </form>
@@ -85,7 +87,11 @@
     </div>
 </div>
 @endsection
-<script type=text/javascript>
-console.log(document.getElementById('dataTable'));
-</script>
 
+@section('scripts')
+
+<!-- tables scripts -->
+@include('common.tables')
+<!-- End of tables scripts -->
+
+@endsection

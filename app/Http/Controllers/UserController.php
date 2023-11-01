@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
+use App\Models\WorkSlotBid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -53,7 +54,7 @@ class UserController extends Controller
             'email'         => 'required|unique:users,email',
             'mobile_number' => 'required|numeric|digits:8',
             'role_id'       =>  'required|exists:roles,id',
-            'available_slots' => 'required',
+            'requested_workslots' => 'required',
             'status'       =>  'required|numeric|in:0,1',
         ]);
 
@@ -67,7 +68,7 @@ class UserController extends Controller
                 'email'         => $request->email,
                 'mobile_number' => $request->mobile_number,
                 'role_id'       => $request->role_id,
-                'available_slots' => $request->available_slots,
+                'requested_workslots' => $request->requested_workslots,
                 'status'        => $request->status,
                 /* 'password'      => Hash::make($request->first_name.'@'.$request->mobile_number) */
                 'password' => Hash::make($request->password), // Set the password field
@@ -144,7 +145,7 @@ class UserController extends Controller
             'email'         => 'required|unique:users,email,'.$user->id.',id',
             'mobile_number' => 'required|numeric|digits:8',
             'role_id'       =>  'required|exists:roles,id',
-            'available_slots' => 'required',
+            'requested_workslots' => 'required',
             'status'       =>  'required|numeric|in:0,1',
         ]);
 
@@ -158,7 +159,7 @@ class UserController extends Controller
                 'email'         => $request->email,
                 'mobile_number' => $request->mobile_number,
                 'role_id'       => $request->role_id,
-                'available_slots' => $request->available_slots,
+                'requested_workslots' => $request->requested_workslots,
                 'status'        => $request->status,
                 'password' => Hash::make($request->password), // Update the password
                 
@@ -215,6 +216,41 @@ class UserController extends Controller
     public function export() 
     {
         return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+
+    public function slots()
+    {
+        if(auth()->user()->role_id == 3){
+            $users = User::query()->where('role_id',4)->get();
+            $workslotbids = WorkSlotBid::all();
+        } 
+        return view('users.slots', ['users' => $users, 'workslotbids' => $workslotbids]);
+    }
+    
+    public function updateslots(Request $request, User $user)
+    {
+        // Validations
+        $request->validate([
+            'requested_workslots' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            // Store Data
+            $user_updated = User::whereId($user->id)->update([
+                'requested_workslots' => $request->requested_workslots,
+            ]);
+            // Commit And Redirected To Listing
+            DB::commit();
+            return redirect()->route('users.slots')->with('success','Requested Workslots Updated Successfully.');
+
+        } catch (\Throwable $th) {
+            // Rollback and return with Error
+            DB::rollBack();
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        }
     }
 
 }

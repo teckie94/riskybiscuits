@@ -37,7 +37,7 @@ class WorkSlotBidController extends Controller
             $workslots = WorkSlot::paginate(10);
             $users = User::paginate(10);
             return view('workslotbids.index', [
-                'workslotbids' => $workslotbids->sortBy('staff_role_id'),
+                'workslotbids' => $workslotbids,
                 'workslots' => $workslots,
                 'users' => $users
             ]);
@@ -51,8 +51,8 @@ class WorkSlotBidController extends Controller
                 'users' => $users
             ]);
         }
-
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -98,10 +98,10 @@ class WorkSlotBidController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-//     public function show($id)
-//     {
-//         //
-//     }
+    public function show($id)
+    {
+        //
+    }
 
 //     /**
 //      * Show the form for editing the specified resource.

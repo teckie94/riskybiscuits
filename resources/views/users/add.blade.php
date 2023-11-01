@@ -104,18 +104,18 @@
                         @enderror
                     </div>
 
-                    {{-- Available Slots --}}
+                    {{-- Requested Slots --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
-                        <span style="color:red;">*</span>Available Slots</label>
+                        <span style="color:red;">*</span>Requested Workslots</label>
                         <input 
                             type="text" 
-                            class="form-control form-control-user @error('available_slots') is-invalid @enderror" 
+                            class="form-control form-control-user @error('requested_workslots') is-invalid @enderror" 
                             id="exampleSlots"
-                            placeholder="Available Slots" 
-                            name="available_slots" 
-                            value="{{ old('available_slots') }}">
+                            placeholder="Requested Workslots" 
+                            name="requested_workslots" 
+                            value="{{ old('requested_workslots') }}">
 
-                        @error('available_slots')
+                        @error('requested_workslots')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
