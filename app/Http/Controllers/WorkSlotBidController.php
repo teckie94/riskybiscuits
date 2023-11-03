@@ -125,7 +125,7 @@ class WorkSlotBidController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WorkSlotBid $workslotbid)
+    public function update(Request $request, WorkSlotBid $workSlotBid)
     {
         // Validate Request
         $request->validate([
@@ -134,13 +134,13 @@ class WorkSlotBidController extends Controller
 
         DB::beginTransaction();
         try {
-            $workslotbid->status = $request->status;
-            $workslotbid->save();
+            $workSlotBid->status = $request->status;
+
             DB::commit();
-            return redirect()->route('workslotbids.index')->with('success','Work Slot Bid updated successfully.');
+            return redirect()->route('workslotbid.index')->with('success','Work Slot Bid updated successfully.');
         } catch (\Throwable $th) {
             DB::rollback();
-            return redirect()->route('workslotbids.index',['workslotbid' => $workslotbid])->with('error',$th->getMessage());
+            return redirect()->route('workslotbid.index',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
         }
     }
 

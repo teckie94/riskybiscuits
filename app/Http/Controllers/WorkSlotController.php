@@ -84,7 +84,7 @@ class WorkSlotController extends Controller
             try {
                 // Update Data
                 $workSlot->update([
-                    'staff_role_id'         => $request->staff_role_id,
+                'staff_role_id'         => $request->staff_role_id,
                 /* 'time_slot_name'        => $request->time_slot_name, */
                 'date'                  => $request->date,
                 'start_time'            => $request->start_time,
