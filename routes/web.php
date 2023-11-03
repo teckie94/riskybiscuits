@@ -78,25 +78,11 @@ Route::middleware('auth')->prefix('cafes')->name('cafes.')->group(function(){
 
 
 //Staff Role Bids
-Route::middleware(['auth'])->prefix('staffrolebids')->name('staffrolebid.')->group(function() {
-    Route::get('/', [StaffRoleBidController::class, 'index'])->name('index');
-    Route::get('/create', [StaffRoleBidController::class, 'create'])->name('create');
-    Route::post('/store', [StaffRoleBidController::class, 'store'])->name('store');
-    Route::get('/{staffRoleBid}/edit', [StaffRoleBidController::class, 'edit'])->name('edit');
-    Route::put('/{staffRoleBid}', [StaffRoleBidController::class, 'update'])->name('update');
-    Route::delete('/{staffRoleBid}', [StaffRoleBidController::class, 'destroy'])->name('destroy');
-    
-});
+Route::resource('staffrolebids', StaffRoleBidController::class);
+
 //Work Slot Bids
-Route::middleware(['auth'])->prefix('workslotbids')->name('workslotbid.')->group(function() {
-    Route::get('/', [WorkSlotBidController::class, 'index'])->name('index');
-    Route::get('/create', [WorkSlotBidController::class, 'create'])->name('create');
-    Route::post('/store', [WorkSlotBidController::class, 'store'])->name('store');
-    Route::get('/{workSlotBid}/edit', [WorkSlotBidController::class, 'edit'])->name('edit');
-    Route::put('/{workSlotBid}', [WorkSlotBidController::class, 'update'])->name('update');
-    Route::delete('/{workSlotBid}', [WorkSlotBidController::class, 'destroy'])->name('destroy');
-    
-});
+Route::resource('workslotbids', WorkSlotBidController::class);
+
 
 //Workslots
 Route::middleware(['auth'])->prefix('workslots')->name('workslot.')->group(function() {

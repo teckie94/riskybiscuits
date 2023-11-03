@@ -16,6 +16,5 @@ class WorkSlotBid extends Model
         'cafe_id',
         'work_slot_id',
         'user_id',
-        'status'
     ];
 }

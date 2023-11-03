@@ -37,6 +37,7 @@ class StaffRoleBidController extends Controller
             $staffroles = StaffRoles::paginate(10);
             $users = User::paginate(10);
 
+
             return view('staffrolebids.index', [
                 'staffrolebids' => $staffrolebids,
                 'staffroles' => $staffroles,
@@ -59,12 +60,12 @@ class StaffRoleBidController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     $permissions = Permission::all();
+    public function create()
+    {
+        $permissions = Permission::all();
 
-    //     return view('staffrolebids.add', ['permissions' => $permissions]);
-    // }
+        return view('staffrolebids.add', ['permissions' => $permissions]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -72,36 +73,36 @@ class StaffRoleBidController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         $request->validate([
-    //             'name' => 'required',
-    //             'guard_name' => 'required'
-    //         ]);
+    public function store(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $request->validate([
+                'name' => 'required',
+                'guard_name' => 'required'
+            ]);
     
-    //         Role::create($request->all());
+            Role::create($request->all());
 
-    //         DB::commit();
-    //         return redirect()->route('staffrolebids.index')->with('success','Roles created successfully.');
-    //     } catch (\Throwable $th) {
-    //         DB::rollback();
-    //         return redirect()->route('staffrolebids.add')->with('error',$th->getMessage());
-    //     }
+            DB::commit();
+            return redirect()->route('staffrolebids.index')->with('success','Roles created successfully.');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->route('staffrolebids.add')->with('error',$th->getMessage());
+        }
         
-    // }
+    }
 
 
 
-    // public function edit($id)
-    // {
-    //     $role = Role::whereId($id)->with('permissions')->first();
+    public function edit($id)
+    {
+        $role = Role::whereId($id)->with('permissions')->first();
         
-    //     $permissions = Permission::all();
+        $permissions = Permission::all();
 
-    //     return view('staffrolebids.edit', ['staffrolebids' => $staffrolebids, 'permissions' => $permissions]);
-    // }
+        return view('staffrolebids.edit', ['staffrolebids' => $staffrolebids, 'permissions' => $permissions]);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -110,27 +111,25 @@ class StaffRoleBidController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StaffRoleBid $staffRoleBid)
+    public function update(Request $request, StaffRoleBid $staffrolebid)
     {
 
 
-        // Validate Request
-        $request->validate([
-            'status' => 'required',
-        ]);
-
+            // Validate Request
+            $request->validate([
+                'status' => 'required',
+            ]);
         DB::beginTransaction();
         try {
-            
-            $staffRoleBid->update([
-                'status' => $request->status,
-            ]);
+            $staffrolebid->status = $request->status;
+            $staffrolebid->save();
+
             DB::commit();
-            return redirect()->route('staffrolebid.index')->with('success','Staff Role Bids updated successfully.');
+            return redirect()->route('staffrolebids.index')->with('success','Staff Role Bids updated successfully.');
         
         } catch (\Throwable $th) {
             DB::rollback();
-            return redirect()->route('staffrolebid.index',['staffRoleBid' => $staffRoleBid])->with('error',$th->getMessage());
+            return redirect()->route('staffrolebids.index',['staffrolebid' => $staffrolebid])->with('error',$th->getMessage());
         }
     }
 
