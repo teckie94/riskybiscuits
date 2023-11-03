@@ -36,7 +36,7 @@
                     </thead>
                     <tbody>
                         @foreach ($workslotbids as $workslotbid)
-                        <form method="POST" action="{{route('workslotbids.update', ['workslotbid' => $workslotbid->id])}}">   
+                        <form method="POST" action="{{route('workslotbid.update', ['workSlotBid' => $workslotbid->id])}}">   
                             @csrf
                             @method('PUT')
                             <tr>
@@ -54,10 +54,10 @@
                                 </td>
                                 <td class="form-control-user" style="display: flex">
                                 @if(auth()->user()->role_id==4)
-                                <a href="{{ route('workslotbids.edit', ['workslotbid' => $workslotbid->id]) }}" class="btn btn-primary m-2">
+                                <a href="{{ route('workslotbid.edit', ['workSlotBid' => $workslotbid->id]) }}" class="btn btn-primary m-2">
                                         <i class="fa fa-pen"></i>
                                 </a>
-                                <form method="POST" action="{{ route('workslotbids.destroy', ['workslotbid' => $workslotbid->id]) }}">
+                                <form method="POST" action="{{ route('workslotbid.destroy', ['workSlotBid' => $workslotbid->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger m-2" type="submit">
