@@ -150,7 +150,7 @@
             </a>
             <div id="staffBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('staffrolebids.index') }}">View Staff Role Bids</a>
+                    <a class="collapse-item" href="{{ route('staffrolebid.index') }}">View Staff Role Bids</a>
                 </div>
             </div>
         </li>
@@ -173,7 +173,7 @@
             </a>
             <div id="workslotBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('workslotbids.index') }}">View Work Slot Bids</a>
+                    <a class="collapse-item" href="{{ route('workslotbid.index') }}">View Work Slot Bids</a>
                 </div>
             </div>
         </li>
