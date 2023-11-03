@@ -134,13 +134,16 @@ class WorkSlotBidController extends Controller
 
         DB::beginTransaction();
         try {
-            $workSlotBid->status = $request->status;
-
+            
+            $workSlotBid->update([
+                'status' => $request->status,
+            ]);
             DB::commit();
-            return redirect()->route('workslotbids.index')->with('success','Work Slot Bid updated successfully.');
+
+            return redirect()->route('workslotbid.index')->with('success','Work Slot Bid updated successfully.');
         } catch (\Throwable $th) {
             DB::rollback();
-            return redirect()->route('workslotbids.index',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
+            return redirect()->route('workslotbid.index',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
         }
     }
 
