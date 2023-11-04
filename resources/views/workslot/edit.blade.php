@@ -46,13 +46,13 @@
                         <span style="color:red;">*</span>Date</label>
                         <input 
                             type="date" 
-                            class="form-control form-control-user @error('date') is-invalid @enderror" 
-                            id="date"
+                            class="form-control form-control-user @error('start_date') is-invalid @enderror" 
+                            id="start_date"
                             placeholder="Date" 
-                            name="date" 
-                            value="{{ old('date') ?  old('date') : $workSlot->date}}">
+                            name="start_date" 
+                            value="{{ old('start_date') ?  old('start_date') : $workSlot->start_date}}">
 
-                        @error('date')
+                        @error('start_date')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

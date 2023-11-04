@@ -15,15 +15,18 @@ class WorkSlot extends Model
     use SoftDeletes;
 
 
-    protected $dates = ['start_datetime','end_datetime'];
+    /* protected $dates = ['start_datetime','end_datetime']; */
     protected $fillable = [
         'time_slot_name',
+        'start_date',
+        'end_date',
         'date',
         'start_time',
         'end_time',
         'staff_role_id',
         'quantity',
     ];
+    
 
     //One to One Relationship
     //Each Work Slot can be created by one user

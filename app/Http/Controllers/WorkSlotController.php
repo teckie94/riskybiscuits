@@ -27,30 +27,38 @@ class WorkSlotController extends Controller
         $request->validate([
             'staff_role_id'             => 'required',
             /* 'time_slot_name'         => 'required', */
-            'date'                      => 'required',
+            'start_date'                => 'required',
+            'end_date'                  => 'required',
             'start_time'                => 'required',
             'end_time'                  => 'required',
             'quantity'                  => 'required',
         ]);
 
         DB::beginTransaction();
+
+        $startDate = new \DateTime($request->start_date);
+        $endDate = new \DateTime($request->end_date);
+
         try {
 
             // Store Data
-            $workslot = WorkSlot::create([
-                'staff_role_id'         => $request->staff_role_id,
-                /* 'time_slot_name'     => $request->time_slot_name, */
-                'date'                  => $request->date,
-                'start_time'            => $request->start_time,
-                'end_time'              => $request->end_time,
-                'quantity'              => $request->quantity,
-            ]);
+            while ($startDate <= $endDate) {
+                WorkSlot::create([
+                    'staff_role_id'     => $request->staff_role_id,
+                    'start_date'        => $startDate->format('Y-m-d'),
+                    'end_date'          => $request->end_date,
+                    'start_time'        => $request->start_time,
+                    'end_time'          => $request->end_time,
+                    'quantity'          => $request->quantity,
+                ]);
+        
+                $startDate->add(new \DateInterval('P1D')); // Increment date by 1 day
+            }
 
             
             // Commit And Redirected To Listing
             DB::commit();
-            
-            //dd($request);
+
             
             return redirect()->route('workslot.index')->with('success','Workslot Created Successfully.');
 
@@ -74,17 +82,17 @@ class WorkSlotController extends Controller
     
 
 
-
     public function update(Request $request, WorkSlot $workSlot)
         {
-            $request->validate([
+             $request->validate([
                 'staff_role_id'             => 'required',
-                /* 'time_slot_name'            => 'required', */
-                'date'                      => 'required',
+                /* 'time_slot_name'         => 'required', */
+                'start_date'                => 'required',
+                /* 'end_date'                  => 'required', */
                 'start_time'                => 'required',
                 'end_time'                  => 'required',
                 'quantity'                  => 'required',
-            ]);
+        ]);
 
             DB::beginTransaction();
 
@@ -92,8 +100,9 @@ class WorkSlotController extends Controller
                 // Update Data
                 $workSlot->update([
                     'staff_role_id'         => $request->staff_role_id,
-                    /* 'time_slot_name'        => $request->time_slot_name, */
-                    'date'                  => $request->date,
+                    /* 'time_slot_name'     => $request->time_slot_name, */
+                    'start_date'            => $request->start_date,
+                    /* 'end_date'              => $request->end_date, */
                     'start_time'            => $request->start_time,
                     'end_time'              => $request->end_time,
                     'quantity'              => $request->quantity,
