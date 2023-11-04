@@ -14,8 +14,6 @@ class WorkSlot extends Model
     use HasFactory;
     use SoftDeletes;
 
-
-    /* protected $dates = ['start_datetime','end_datetime']; */
     protected $fillable = [
         'time_slot_name',
         'start_date',

@@ -6,6 +6,8 @@ use App\Models\WorkSlot;
 use App\Models\StaffRoles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Imports\WorkslotImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkSlotController extends Controller
 {
@@ -59,9 +61,7 @@ class WorkSlotController extends Controller
             // Commit And Redirected To Listing
             DB::commit();
 
-            
             return redirect()->route('workslot.index')->with('success','Workslot Created Successfully.');
-
 
         } catch (\Throwable $th) {
             // Rollback and return with Error
@@ -70,10 +70,6 @@ class WorkSlotController extends Controller
         }
     }
 
-   /*  public function edit(WorkSlot $workSlot) {
-        
-        return view('workslot.edit', compact('workSlot'));
-    } */
 
     public function edit(WorkSlot $workSlot) {
         $staffRoles = StaffRoles::all(); // Fetch cafe roles from the database
@@ -122,10 +118,33 @@ class WorkSlotController extends Controller
         }
 
 
-    public function destroy(WorkSlot $workSlot)
-    {
-        $workSlot->delete();
-        return redirect()->route('workslots.index');
-    }
+        public function delete(WorkSlot $workSlot)
+        {
+            DB::beginTransaction();
+            try {
+                
+                // Delete Workslot
+                WorkSlot::whereId($workSlot->id)->delete();
+    
+                DB::commit();
+                return redirect()->route('workslot.index')->with('success', 'Workslot Deleted Successfully!.');
+    
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return redirect()->back()->with('error', $th->getMessage());
+            }
+        }
+
+        public function importWorkslots() {
+
+            return view('workslot.import');
+         }
+
+       public function uploadWorkslots(Request $request) {
+
+            Excel::import(new WorkslotImport, $request->file);
+            return redirect()->route('workslot.index')->with('success', 'Workslots Imported Successfully!');
+
+        }
 }
 

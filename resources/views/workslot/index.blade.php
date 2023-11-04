@@ -15,12 +15,17 @@
         <a href="{{ route('workslot.create') }}" class="btn btn-sm btn-primary">
             <i class="fas fa-plus"></i> Add New
         </a>
+
+        <a style="margin-left:10px;" href="{{ route('workslot.import') }}" class="btn btn-sm btn-success">
+            <i class="fas fa-check"></i> Import Workslots
+        </a>
     </div>
+
 
     {{-- Alert Messages --}}
     @include('common.alert')
 
-    <!-- DataTales Example -->
+    <!-- DataTables -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Workslots</h6>
@@ -56,22 +61,11 @@
                                     <i class="fa fa-pen"></i>
                                 </a>
 
-
-                              
-                                <form method="POST" action="{{-- /cafes/deletecafe/{{$workslot->id}} --}}">
-                                @csrf
-                                @method('DELETE')
-
-                                <button class="btn-sm btn-danger m-2" >
+                                <a class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
+                                    data-target="#deleteWorkslotModal{{ $workslot->id }}">
                                     <i class="fas fa-trash"></i>
-                                
-                                </button>
-                                </form>
-
-
+                                </a>
                             </td>
-
-
                         </tr>
                         @endforeach
                     </tbody>
@@ -81,7 +75,7 @@
     </div>
 </div>
 
-{{-- @include('users.deleterecord-modal') --}}
+@include('workslot.delete-modal')
 
 @endsection
 
