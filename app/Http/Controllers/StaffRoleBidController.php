@@ -124,6 +124,7 @@ class StaffRoleBidController extends Controller
             
             $staffRoleBid->update([
                 'status' => $request->status,
+                'remarks' => $request->remarks,
             ]);
             DB::commit();
             return redirect()->route('staffrolebid.index')->with('success','Staff Role Bids updated successfully.');

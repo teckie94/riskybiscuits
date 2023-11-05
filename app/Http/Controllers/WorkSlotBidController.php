@@ -137,6 +137,7 @@ class WorkSlotBidController extends Controller
             
             $workSlotBid->update([
                 'status' => $request->status,
+                'remarks' =>$request->remarks,
             ]);
             DB::commit();
 

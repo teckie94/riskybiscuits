@@ -16,6 +16,7 @@ class StaffRoleBid extends Model
         'cafe_id',
         'staff_role_id',
         'user_id',
-        'status'
+        'status',
+        'remarks'
     ];
 }
