@@ -68,7 +68,7 @@
         </a>
         <div id="cafes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('cafes.viewcafe') }}">View Cafes</a>
+                <a class="collapse-item" href="{{ route('cafes.viewcafe') }}">View Timeslots</a>
                 <a class="collapse-item" href="{{ route('cafes.createcafe') }}">Add New Cafe</a>
                 <a class="collapse-item" href="{{ route('cafes.archive') }}">Deleted Cafes</a>
                 <a class="collapse-item" href="{{ route('cafes.import') }}">Import Cafes</a>
@@ -82,7 +82,7 @@
 
 
 
-    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner') || auth()->user()->hasRole('Staff'))
+    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner'))
     <!-- Heading -->
     <div class="sidebar-heading">
         Workslots
@@ -98,7 +98,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('workslot.index') }}">View Workslots</a>
                 <a class="collapse-item" href="{{ route('workslot.create') }}">Add New Slot</a>
-                <a class="collapse-item" href="{{ route('workslot.import') }}">Import Workslots</a>
+                {{-- <a class="collapse-item" href="{{ route('cafes.archive') }}">Deleted Cafes</a>
+                <a class="collapse-item" href="{{ route('cafes.import') }}">Import Cafes</a> --}}
             </div>
         </div>
     </li>
@@ -107,6 +108,56 @@
     <hr class="sidebar-divider">
     @endif
 
+
+
+    @if(auth()->user()->hasRole('SuperAdmin'))
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Admin Section
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Roles & Permissions</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Roles & Permissions</h6>
+                    <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
+                    <a class="collapse-item" href="{{ route('permissions.index') }}">Permissions</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+   @endif
+
+    <!-- Staff Role Bids -->
+    @if(auth()->user()->hasRole('Manager') || auth()->user()->hasRole('Staff'))
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Staff Role Bids
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#staffBids"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-table"></i>
+                <span>Manage Staff Role Bids</span>
+            </a>
+            <div id="staffBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('staffrolebid.index') }}">View Staff Role Bids</a>
+                </div>
+            </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+   @endif
 
    <!-- Workslot Bids -->
    @if(auth()->user()->hasRole('Manager') || auth()->user()->hasRole('Staff'))
@@ -130,35 +181,6 @@
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
    @endif
-
-
-
-   @if(auth()->user()->hasRole('SuperAdmin'))
-   <!-- Heading -->
-   <div class="sidebar-heading">
-       Admin Section
-   </div>
-
-   <!-- Nav Item - Pages Collapse Menu -->
-   <li class="nav-item">
-       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-           aria-expanded="true" aria-controls="collapsePages">
-           <i class="fas fa-fw fa-folder"></i>
-           <span>Roles & Permissions</span>
-       </a>
-       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-           <div class="bg-white py-2 collapse-inner rounded">
-               <h6 class="collapse-header">Roles & Permissions</h6>
-               <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
-               <a class="collapse-item" href="{{ route('permissions.index') }}">Permissions</a>
-           </div>
-       </div>
-   </li>
-
-   <!-- Divider -->
-   <hr class="sidebar-divider d-none d-md-block">
-@endif
-
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
