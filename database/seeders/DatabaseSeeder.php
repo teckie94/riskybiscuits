@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             WorkSlotSeeder::class,
             StaffRoleBidSeeder::class,
             WorkSlotBidSeeder::class,
-            
         ]);
 
         Cafes::factory(5)->create();

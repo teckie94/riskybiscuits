@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('cafe_id')->default(1)->nullable();
             $table->foreign('work_slot_id')->references('id')->on('work_slots');
             $table->foreign('user_id')->references('id')->on('users');
-            
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });

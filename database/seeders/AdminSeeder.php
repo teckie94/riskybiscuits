@@ -23,7 +23,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'superadmin@gmail.com',
             'mobile_number' =>  '81818181',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 1,
+            'role_id'       => 1
         ]);
 
         $user = User::create([
@@ -32,7 +32,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'owner@gmail.com',
             'mobile_number' =>  '82828282',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 2,
+            'role_id'       => 2
         ]);
 
         $user = User::create([
@@ -41,7 +41,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'manager@gmail.com',
             'mobile_number' =>  '83838423',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 3,
+            'role_id'       => 3
         ]);
 
         $user = User::create([

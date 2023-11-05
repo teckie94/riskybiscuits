@@ -52,7 +52,6 @@ Route::middleware('auth')->prefix('users')->name('users.')->group(function(){
     Route::put('/update/{user}', [UserController::class, 'update'])->name('update');
     Route::delete('/delete/{user}', [UserController::class, 'delete'])->name('destroy');
     Route::get('/update/status/{user_id}/{status}', [UserController::class, 'updateStatus'])->name('status');
-
     Route::get('/import-users', [UserController::class, 'importUsers'])->name('import');
     Route::post('/upload-users', [UserController::class, 'uploadUsers'])->name('upload');
     Route::get('/slots', [UserController::class, 'slots'])->name('slots');
@@ -103,8 +102,9 @@ Route::middleware(['auth'])->prefix('workslots')->name('workslot.')->group(funct
     Route::get('/', [WorkSlotController::class, 'index'])->name('index');
     Route::get('/create', [WorkSlotController::class, 'create'])->name('create');
     Route::post('/store', [WorkSlotController::class, 'store'])->name('store');
-    Route::get('/{workSlot}/edit', [WorkSlotController::class, 'edit'])->name('edit');
-    Route::put('/{workSlot}', [WorkSlotController::class, 'update'])->name('update');
-    Route::delete('/{workSlot}', [WorkSlotController::class, 'destroy'])->name('destroy');
-    
+    Route::get('/edit/{workSlot}', [WorkSlotController::class, 'edit'])->name('edit');
+    Route::put('/update/{workSlot}', [WorkSlotController::class, 'update'])->name('update');
+    Route::delete('/delete/{workSlot}', [WorkSlotController::class, 'delete'])->name('destroy');
+    Route::get('/import-workslot', [WorkSlotController::class, 'importWorkslots'])->name('import');
+    Route::post('/upload-workslot', [WorkSlotController::class, 'uploadWorkslots'])->name('upload');
 });
