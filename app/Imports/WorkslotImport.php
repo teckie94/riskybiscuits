@@ -1,9 +1,11 @@
-<?php 
+<?php
 
 namespace App\Imports;
+
 use App\Models\WorkSlot;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+
 class WorkslotImport implements ToModel, WithHeadingRow
 {
     /**
@@ -13,6 +15,7 @@ class WorkslotImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+
         $workslot = new WorkSlot([
             "time_slot_name" => $row['time_slot_name'],
             "start_date" => $row['start_date'],
@@ -23,5 +26,8 @@ class WorkslotImport implements ToModel, WithHeadingRow
             "quantity" => $row['quantity'],
         ]);
         return $workslot;
+
+
     }
+    
 }
