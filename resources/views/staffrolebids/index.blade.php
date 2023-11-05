@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{$staffroles->find($staffrolebid->staff_role_id)->name}}</td>
                             <td>{{$users->find($staffrolebid->user_id)->first_name . ' '. $users->find($staffrolebid->user_id)->last_name}}</td>
-                            <td>{{$staffrolebid->updated_at->format('d/m/Y h:i A')}}</td>
+                            <td>{{$staffrolebid->created_at->format('d/m/Y h:i A')}}</td>
                             {{-- Status --}}
                             <td>
                                 @if($staffrolebid->status == 1)
@@ -63,16 +63,12 @@
                             </td>
                             @elseif((auth()->user()->role_id==3) && ($staffrolebid->status == 0))
                             <td style="display: flex;">
-                                <form method="POST" action="{{route('staffrolebid.update', ['staffRoleBid' => $staffrolebid->id])}}">   
-                                    @csrf
-                                    @method('PUT')
-                                    <button id="btnApprove" type="submit" name="status" value="1" class="btn btn-success m-2">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    <button id="btnReject" type="submit" name="status" value="-1" class="btn btn-danger m-2">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <a id="btnApprove" class="btn btn-success m-2" href="#" data-toggle="modal" data-target="#approveModal{{$staffrolebid->id}}">
+                                    <i class="fas fa-check"></i>
+                                </a>
+                                <a id="btnReject" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#rejectModal{{$staffrolebid->id}}">
+                                    <i class="fas fa-times"></i>
+                                </a>
                             </td>
                             @elseif($staffrolebid->status != 0)
                                 <td>  -  </td>
@@ -86,6 +82,8 @@
         </div>
     </div>
 </div>
+@include('staffrolebids.approve-modal')
+@include('staffrolebids.reject-modal')
 @endsection
 
 @section('scripts')
@@ -93,5 +91,5 @@
 <!-- tables scripts -->
 @include('common.tables')
 <!-- End of tables scripts -->
-
+@include('common.modals')
 @endsection

@@ -32,16 +32,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $user)
-                        <form method="POST" action="{{route('users.updateslots', ['user' => $user->id])}}">   
-                            @csrf
-                            @method('PUT')
+                        @foreach($users as $user)
                             <tr>
                                 <td>{{$user->first_name . ' '. $user->last_name}}</td>
                                 <td>                    
                                     <input 
                                         type="text" 
-                                        class="form-control form-control-user @error('available_slots') is-invalid @enderror" 
+                                        class="form-control quantity form-control-user @error('available_slots') is-invalid @enderror" 
                                         id="exampleSlots"
                                         placeholder="Requested Slots" 
                                         name="requested_workslots" 
@@ -53,20 +50,19 @@
                                 <td>{{$workslotbids->where('user_id', $user->id)->count()}}</td>
                                 <td>{{$user->requested_workslots - $workslotbids->where('user_id', $user->id)->count()}}</td>
                                 <td class="form-control-user" style="display: flex">
-                                    <button id="btnSave" type="submit" name="requested_workslots" value="1" class="btn btn-success m-2">
-                                        <i class="fa fa-save"></i>
-                                    </button>
+                                    <a id="btnSave" class="btn btn-success save m-2" href="#" data-toggle="modal" data-qty="<?php echo $user->requested_workslots; ?>" data-target="#saveModal{{ $user->id }}">
+                                        <i class="fas fa-save"></i>
+                                    </a>
                                 </td>
                             </tr>
-                        </form>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
 </div>
+@include('users.editRequestedWorkslot-modal')
 @endsection
 
 @section('scripts')
@@ -74,5 +70,5 @@
 <!-- tables scripts -->
 @include('common.tables')
 <!-- End of tables scripts -->
-
+@include('common.modals')
 @endsection

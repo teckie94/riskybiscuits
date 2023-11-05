@@ -231,9 +231,9 @@ class UserController extends Controller
     public function updateslots(Request $request, User $user)
     {
         // Validations
-        $request->validate([
-            'requested_workslots' => 'required',
-        ]);
+        //$request->validate([
+        //    'requested_workslots' => 'required',
+        //]);
 
         DB::beginTransaction();
         try {

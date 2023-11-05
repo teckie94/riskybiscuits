@@ -42,7 +42,7 @@
                             <tr>
                                 <td>{{$workslots->find($workslotbid->work_slot_id)->date . ' ' . $workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
                                 <td>{{$users->find($workslotbid->user_id)->first_name . ' '. $users->find($workslotbid->user_id)->last_name}}</td>
-                                <td>{{$workslotbid->updated_at->format('d/m/Y h:i A')}}</td>
+                                <td>{{$workslotbid->created_at->format('d/m/Y h:i A')}}</td>
                                 <td>
                                     @if($workslotbid->status == 1)
                                         Approved
@@ -52,27 +52,31 @@
                                         Pending Approval
                                     @endif
                                 </td>
+                                @if((auth()->user()->role_id==4) && ($workslotbid->status == 0))
                                 <td class="form-control-user" style="display: flex">
-                                @if(auth()->user()->role_id==4)
-                                <a href="{{ route('workslotbid.edit', ['workSlotBid' => $workslotbid->id]) }}" class="btn btn-primary m-2">
-                                        <i class="fa fa-pen"></i>
-                                </a>
-                                <form method="POST" action="{{ route('workslotbid.destroy', ['workSlotBid' => $workslotbid->id]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger m-2" type="submit">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-                                @elseif(auth()->user()->role_id==3)
-                                    <button id="btnApprove" type="submit" name="status" value="1" class="btn btn-success m-2">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    <button id="btnReject" type="submit" name="status" value="-1" class="btn btn-danger m-2">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                @endif
+                                    <a href="{{ route('workslotbid.edit', ['workSlotBid' => $workslotbid->id]) }}" class="btn btn-primary m-2">
+                                            <i class="fa fa-pen"></i>
+                                    </a>
+                                    <form method="POST" action="{{ route('workslotbid.destroy', ['workSlotBid' => $workslotbid->id]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger m-2" type="submit">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
+                                @elseif((auth()->user()->role_id==3) && ($workslotbid->status == 0))
+                                <td class="form-control-user" style="display: flex">
+                                    <a id="btnApprove" class="btn btn-success m-2" href="#" data-toggle="modal" data-target="#approveModal{{$workslotbid->id}}">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <a id="btnReject" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#rejectModal{{$workslotbid->id}}">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                </td>
+                                @elseif($workslotbid->status != 0)
+                                <td>-</td>      
+                                @endif
                             </tr>
                         </form>
                         @endforeach
@@ -82,8 +86,9 @@
             </div>
         </div>
     </div>
-
 </div>
+@include('workslotbids.approve-modal')
+@include('workslotbids.reject-modal')
 @endsection
 
 @section('scripts')

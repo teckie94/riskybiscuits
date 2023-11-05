@@ -21,7 +21,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner'))
+    @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner')||(auth()->user()->hasRole('Manager')))
 
     <div class="sidebar-heading">
         Management
@@ -37,8 +37,9 @@
         <div id="taTpDropDown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">User Management</h6> --}}
+                @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner'))
                 <a class="collapse-item" href="{{ route('users.index') }}">View Users</a>
-                @if(auth()->user()->hasRole('SuperAdmin'))
+                @elseif(auth()->user()->hasRole('SuperAdmin'))
                 <a class="collapse-item" href="{{ route('users.create') }}">Add New User</a>
                 <a class="collapse-item" href="{{ route('users.import') }}">Import Users</a>
                 @elseif(auth()->user()->hasRole('Manager'))
