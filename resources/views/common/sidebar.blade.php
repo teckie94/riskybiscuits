@@ -51,6 +51,8 @@
     @endif
 
 
+     <!--------------------------------------- TO BE DELETED LATER - CAFE --------------------------------------->
+
     @if(auth()->user()->hasRole('SuperAdmin'))
     <!-- Heading -->
     <div class="sidebar-heading">
