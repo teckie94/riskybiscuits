@@ -14,7 +14,8 @@ class WorkSlot extends Model
 
     protected $fillable = [
         'time_slot_name',
-        'date',
+        'start_date',
+        'end_date',
         'start_time',
         'end_time',
         'staff_role_id',
