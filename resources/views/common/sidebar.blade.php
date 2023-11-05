@@ -182,30 +182,6 @@
         <hr class="sidebar-divider d-none d-md-block">
     @endif
 
-    <!-- Staff Role Bids -->
-    @if(auth()->user()->hasRole('Manager') || auth()->user()->hasRole('Staff'))
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Staff Role Bids
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#staffBids"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-table"></i>
-                    <span>Manage Staff Role Bids</span>
-                </a>
-                <div id="staffBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('staffrolebid.index') }}">View Staff Role Bids</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-    @endif
-    
-
     @if(auth()->user()->hasRole('SuperAdmin'))
     <!-- Heading -->
     <div class="sidebar-heading">
