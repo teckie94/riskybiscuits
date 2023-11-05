@@ -30,8 +30,7 @@
             <div class="card-body">
                 <div class="form-group row">
 
-
-                    {{-- Staff Role --}}
+                {{-- Staff Role --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Staff Role</label>
                         <select name="staff_role_id" id="staff_role_id" class="form-control">
@@ -50,7 +49,7 @@
                             id="start_date"
                             placeholder="Date" 
                             name="start_date" 
-                            value="{{ old('start_date') ?  old('start_date') : $workSlot->start_date}}">
+                            value="{{ old('start_date') ?  old('start_date') : $workSlot->date}}">
 
                         @error('start_date')
                             <span class="text-danger">{{$message}}</span>
@@ -99,12 +98,10 @@
                             placeholder="Total Staff Required" 
                             name="quantity" 
                             value="{{ old('quantity') ?  old('quantity') : $workSlot->quantity}}">
-
                         @error('quantity')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-
 
                 </div>
             </div>
@@ -117,5 +114,6 @@
     </div>
 
 </div>
+
 
 @endsection
