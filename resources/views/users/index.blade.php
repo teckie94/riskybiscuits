@@ -8,26 +8,22 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Users</h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">
-                        <i class="fas fa-plus"></i> Add New
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="{{ route('users.export') }}" class="btn btn-sm btn-success">
-                        <i class="fas fa-check"></i> Export To Excel
-                    </a>
-                </div>
-                
-            </div>
+        </div>
 
+        <div class="col-md-6" style="margin-bottom:20px;">
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus"></i> Add New
+            </a>
+
+            <a style="margin-left:10px;" href="{{ route('users.export') }}" class="btn btn-sm btn-success">
+                <i class="fas fa-check"></i> Export to Excel
+            </a>
         </div>
 
         {{-- Alert Messages --}}
         @include('common.alert')
 
-        <!-- DataTales Example -->
+        <!-- DataTables -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">All Users</h6>
@@ -78,7 +74,7 @@
                                             class="btn-sm btn-primary m-2">
                                             <i class="fa fa-pen"></i>
                                         </a>
-                                        <a class="btn-sm btn-danger m-2" href="#" data-toggle="modal" data-target="#deleteModal">
+                                        <a class="btn-sm btn-danger m-2" href="#" data-toggle="modal" data-target="#deleteModal{{ $user->id }}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
@@ -86,8 +82,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                  {{--   {{ $users->links() }} --}}
                 </div>
             </div>
         </div>

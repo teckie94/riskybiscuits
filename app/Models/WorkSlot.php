@@ -14,12 +14,15 @@ class WorkSlot extends Model
 
     protected $fillable = [
         'time_slot_name',
+        'start_date',
+        'end_date',
         'date',
         'start_time',
         'end_time',
         'staff_role_id',
         'quantity',
     ];
+    
 
     //One to One Relationship
     //Each Work Slot can be created by one user
@@ -31,7 +34,7 @@ class WorkSlot extends Model
     //Each Work Slot is for One Staff Role
     public function staffRole():HasOne
     {
-        return $this->hasOne(StaffRole::class);
+        return $this->hasOne(StaffRoles::class);
     }
     //Each Work Slot has many Work Slot Bids
     public function workSlotBid(): HasMany
