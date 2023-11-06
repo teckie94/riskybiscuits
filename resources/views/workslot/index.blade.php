@@ -12,15 +12,20 @@
     </div>
 
     <div class="col-md-6" style="margin-bottom:20px;">
+        <a href="{{ route('workslot.create') }}" class="btn btn-sm btn-primary">
+            <i class="fas fa-plus"></i> Add New
+        </a>
+
         <a style="margin-left:10px;" href="{{ route('workslot.import') }}" class="btn btn-sm btn-success">
             <i class="fas fa-check"></i> Import Workslots
         </a>
     </div>
 
+
     {{-- Alert Messages --}}
     @include('common.alert')
 
-     <!-- DataTables -->
+    <!-- DataTables -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Workslots</h6>
@@ -44,17 +49,18 @@
                         @foreach ($workSlots as $workslot)
                         <tr>
                             {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
-                            <<td>{{ $workslot->start_date }}</td>
+                            <td>{{ $workslot->start_date }}</td>
                             <td>{{$workslot->role->name}}</td>
                             <td>{{ $workslot->start_time }}</td>
                             <td>{{ $workslot->end_time }}</td>
                             <td>{{ $workslot->quantity }}</td>
 
                             <td style="display: flex">
-                                <a href="{{ route('workslot.edit', ['workSlot' => $workslot->id])}}"
+                                <a href="{{ route('workslot.edit', ['workSlot' => $workslot->id]) }}"
                                     class="btn-sm btn-primary m-2">
                                     <i class="fa fa-pen"></i>
                                 </a>
+
                                 <a class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
                                     data-target="#deleteWorkslotModal{{ $workslot->id }}">
                                     <i class="fas fa-trash"></i>

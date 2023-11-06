@@ -25,9 +25,8 @@ class WorkslotImport implements ToModel, WithHeadingRow
             "staff_role_id" => $row['staff_role_id'],
             "quantity" => $row['quantity'],
         ]);
+
+
         return $workslot;
-
-
     }
-    
 }

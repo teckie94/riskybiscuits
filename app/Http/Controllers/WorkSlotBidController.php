@@ -51,8 +51,8 @@ class WorkSlotBidController extends Controller
                 'users' => $users
             ]);
         }
-    }
 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -98,10 +98,10 @@ class WorkSlotBidController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+//     public function show($id)
+//     {
+//         //
+//     }
 
 //     /**
 //      * Show the form for editing the specified resource.
@@ -118,35 +118,41 @@ class WorkSlotBidController extends Controller
 //         return view('workslotbids.edit', ['workslotbids' => $workslotbids, 'permissions' => $permissions]);
 //     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, WorkSlotBid $workSlotBid)
-    {
-        // Validate Request
-        $request->validate([
-            'status' => 'required',
-        ]);
+//     /**
+//      * Update the specified resource in storage.
+//      *
+//      * @param  \Illuminate\Http\Request  $request
+//      * @param  int  $id
+//      * @return \Illuminate\Http\Response
+//      */
+//     public function update(Request $request, $id)
+//     {
+//         DB::beginTransaction();
+//         try {
 
-        DB::beginTransaction();
-        try {
+//             // Validate Request
+//             $request->validate([
+//                 'name' => 'required',
+//                 'guard_name' => 'required'
+//             ]);
             
-            $workSlotBid->update([
-                'status' => $request->status,
-                'remarks' =>$request->remarks,
-            ]);
-            DB::commit();
+//             $role = Role::whereId($id)->first();
 
-            return redirect()->route('workslotbid.index')->with('success','Work Slot Bid updated successfully.');
-        } catch (\Throwable $th) {
-            DB::rollback();
-            return redirect()->route('workslotbid.index',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
-        }
-    }
+//             $role->name = $request->name;
+//             $role->guard_name = $request->guard_name;
+//             $role->save();
+
+//             // Sync Permissions
+//             $permissions = $request->permissions;
+//             $role->syncPermissions($permissions);
+            
+//             DB::commit();
+//             return redirect()->route('roles.index')->with('success','Roles updated successfully.');
+//         } catch (\Throwable $th) {
+//             DB::rollback();
+//             return redirect()->route('roles.edit',['role' => $role])->with('error',$th->getMessage());
+//         }
+//     }
 
 //     /**
 //      * Remove the specified resource from storage.

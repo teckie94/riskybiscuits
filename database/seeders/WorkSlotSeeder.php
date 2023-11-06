@@ -17,15 +17,13 @@ class WorkSlotSeeder extends Seeder
     
     public function run()
     {
-        $start_date = Carbon::createFromDate('2023', '11', '1');
-        $end_date = Carbon::createFromDate('2023', '11', '1');
+        $date = Carbon::createFromDate('2023', '11', '1');
         $startTime = Carbon::createFromTime('7', '30', '0');
         $endTime = Carbon::createFromTime('13', '30', '0');
         // Create Workslot
         $workslot = WorkSlot::create([
             'time_slot_name' => 'AM Shift',
-            'start_date' => $start_date,
-            'end_date' =>$end_date,
+            'date' => $date,
             'start_time' => $startTime,
             'end_time' =>$endTime,
             'staff_role_id' => 1,
@@ -33,8 +31,7 @@ class WorkSlotSeeder extends Seeder
         ]);
         $workslot = WorkSlot::create([
             'time_slot_name' => 'AM Shift',
-            'start_date' => $start_date,
-            'end_date' =>$end_date,
+            'date' => $date,
             'start_time' => $startTime,
             'end_time' =>$endTime,
             'staff_role_id' => 2,
@@ -43,8 +40,7 @@ class WorkSlotSeeder extends Seeder
 
         $workslot = WorkSlot::create([
             'time_slot_name' => 'AM Shift',
-            'start_date' => $start_date,
-            'end_date' =>$end_date,
+            'date' => $date,
             'start_time' => $startTime,
             'end_time' =>$endTime,
             'staff_role_id' => 3,
