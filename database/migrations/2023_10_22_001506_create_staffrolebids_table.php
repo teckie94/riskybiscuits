@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('staff_role_id');
             $table->integer('user_id');
             $table->integer('status')->default(0)->comment('Status: 0=Pending Approval; 1=Approved; -1=Rejected');
+            $table->text('remarks')->nullable();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
