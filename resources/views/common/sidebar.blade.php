@@ -83,7 +83,7 @@
 
 
 
-   @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner'))
+    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner'))
     <!-- Heading -->
     <div class="sidebar-heading">
         Workslots
@@ -99,7 +99,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('workslot.index') }}">View Workslots</a>
                 <a class="collapse-item" href="{{ route('workslot.create') }}">Add New Slot</a>
-                <a class="collapse-item" href="{{ route('workslot.import') }}">Import Workslots</a>
+                {{-- <a class="collapse-item" href="{{ route('cafes.archive') }}">Deleted Cafes</a>
+                <a class="collapse-item" href="{{ route('cafes.import') }}">Import Cafes</a> --}}
             </div>
         </div>
     </li>
