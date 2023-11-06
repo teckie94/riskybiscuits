@@ -12,9 +12,14 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+   public function test_example()
     {
-        $response = $this->get('/');
+
+        /* $user = factory(User::class)->create(); */
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+                         ->get('/');
 
         $response->assertStatus(200);
     }
