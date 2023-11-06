@@ -15,8 +15,8 @@ class ExampleTest extends TestCase
    public function test_example()
     {
 
-        /* $user = factory(User::class)->create(); */
-        $user = User::factory()->create();
+        $user = factory(User::class)->create();
+       /*  $user = User::factory()->create(); */
 
         $response = $this->actingAs($user)
                          ->get('/');
