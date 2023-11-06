@@ -84,8 +84,8 @@ Route::middleware(['auth'])->prefix('staffrolebids')->name('staffrolebid.')->gro
     Route::get('/{staffRoleBid}/edit', [StaffRoleBidController::class, 'edit'])->name('edit');
     Route::put('/{staffRoleBid}', [StaffRoleBidController::class, 'update'])->name('update');
     Route::delete('/{staffRoleBid}', [StaffRoleBidController::class, 'destroy'])->name('destroy');
-    
 });
+
 //Work Slot Bids
 Route::middleware(['auth'])->prefix('workslotbids')->name('workslotbid.')->group(function() {
     Route::get('/', [WorkSlotBidController::class, 'index'])->name('index');
@@ -94,7 +94,6 @@ Route::middleware(['auth'])->prefix('workslotbids')->name('workslotbid.')->group
     Route::get('/{workSlotBid}/edit', [WorkSlotBidController::class, 'edit'])->name('edit');
     Route::put('/{workSlotBid}', [WorkSlotBidController::class, 'update'])->name('update');
     Route::delete('/{workSlotBid}', [WorkSlotBidController::class, 'destroy'])->name('destroy');
-    
 });
 
 //Workslots

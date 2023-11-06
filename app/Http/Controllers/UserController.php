@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\WorkSlotBid;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
-use App\Models\WorkSlotBid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -217,8 +217,6 @@ class UserController extends Controller
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
-
-
     public function slots()
     {
         if(auth()->user()->role_id == 3){
@@ -252,5 +250,4 @@ class UserController extends Controller
             return redirect()->back()->withInput()->with('error', $th->getMessage());
         }
     }
-
 }

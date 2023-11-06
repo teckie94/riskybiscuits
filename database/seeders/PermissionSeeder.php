@@ -99,6 +99,7 @@ class PermissionSeeder extends Seeder
             $user->assignRole($role->id);
         }
 
+
         //SuperAdmin Permissions
         $adminpermissions = [
             'user-list',

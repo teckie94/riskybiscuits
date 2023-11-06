@@ -36,7 +36,6 @@ class StaffRoleBidController extends Controller
             $staffrolebids = StaffRoleBid::paginate(10);
             $staffroles = StaffRoles::paginate(10);
             $users = User::paginate(10);
-
             return view('staffrolebids.index', [
                 'staffrolebids' => $staffrolebids,
                 'staffroles' => $staffroles,
@@ -92,8 +91,23 @@ class StaffRoleBidController extends Controller
         
     // }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    // public function show($id)
+    // {
+    //     //
+    // }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     // public function edit($id)
     // {
     //     $role = Role::whereId($id)->with('permissions')->first();

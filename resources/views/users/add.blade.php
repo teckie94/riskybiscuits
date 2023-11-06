@@ -114,7 +114,6 @@
                             placeholder="Requested Workslots" 
                             name="requested_workslots" 
                             value="{{ old('requested_workslots') }}">
-
                         @error('requested_workslots')
                             <span class="text-danger">{{$message}}</span>
                         @enderror

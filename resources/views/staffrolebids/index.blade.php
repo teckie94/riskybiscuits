@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{$staffroles->find($staffrolebid->staff_role_id)->name}}</td>
                             <td>{{$users->find($staffrolebid->user_id)->first_name . ' '. $users->find($staffrolebid->user_id)->last_name}}</td>
-                            <td>{{$staffrolebid->created_at->format('d/m/Y h:i A')}}</td>
+                            <td>{{$staffrolebid->updated_at->format('d/m/Y h:i A')}}</td>
                             {{-- Status --}}
                             <td>
                                 @if($staffrolebid->status == 1)
@@ -54,8 +54,8 @@
                                     <i class="fa fa-pen"></i>
                                 </a>
                                 <form method="POST" action="{{ route('staffrolebid.destroy', ['staffRoleBid' => $staffrolebid->id]) }}">
-                                    @csrf
-                                    @method('DELETE')
+                                @csrf
+                                @method('DELETE')
                                     <button class="btn btn-danger m-2" type="submit">
                                         <i class="fa fa-trash"></i>
                                     </button>
@@ -71,7 +71,7 @@
                                 </a>
                             </td>
                             @elseif($staffrolebid->status != 0)
-                                <td>  -  </td>
+                            <td>  -  </td>
                             @endif
                         </tr>
                         @endforeach
@@ -87,7 +87,6 @@
 @endsection
 
 @section('scripts')
-
 <!-- tables scripts -->
 @include('common.tables')
 <!-- End of tables scripts -->

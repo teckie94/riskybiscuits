@@ -42,7 +42,7 @@ class WorkSlotBidController extends Controller
                 'users' => $users
             ]);
         } else if(auth()->user()->role_id == 4) {
-            $workslotbids = WorkSlotBid::query()->where('user_id', auth()->user()->id)->paginate(10);
+            $workslotbids = WorkSlotBid::where('user_id', auth()->user()->id)->paginate(10);
             $workslots = WorkSlot::paginate(10);
             $users = User::query()->where('id', auth()->user()->id)->paginate(10);
             return view('workslotbids.index', [
@@ -51,8 +51,8 @@ class WorkSlotBidController extends Controller
                 'users' => $users
             ]);
         }
-    }
 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -98,25 +98,25 @@ class WorkSlotBidController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
-//     /**
-//      * Show the form for editing the specified resource.
-//      *
-//      * @param  int  $id
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function edit($id)
-//     {
-//         $role = Role::whereId($id)->with('permissions')->first();
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit($id)
+    // {
+    //     $role = Role::whereId($id)->with('permissions')->first();
         
-//         $permissions = Permission::all();
+    //     $permissions = Permission::all();
 
-//         return view('workslotbids.edit', ['workslotbids' => $workslotbids, 'permissions' => $permissions]);
-//     }
+    //     return view('workslotbids.edit', ['workslotbids' => $workslotbids, 'permissions' => $permissions]);
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -148,24 +148,24 @@ class WorkSlotBidController extends Controller
         }
     }
 
-//     /**
-//      * Remove the specified resource from storage.
-//      *
-//      * @param  int  $id
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function destroy($id)
-//     {
-//         DB::beginTransaction();
-//         try {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    // public function destroy($id)
+    // {
+    //     DB::beginTransaction();
+    //     try {
     
-//             Role::whereId($id)->delete();
+    //         Role::whereId($id)->delete();
             
-//             DB::commit();
-//             return redirect()->route('roles.index')->with('success','Roles deleted successfully.');
-//         } catch (\Throwable $th) {
-//             DB::rollback();
-//             return redirect()->route('roles.index')->with('error',$th->getMessage());
-//         }
-//     }
+    //         DB::commit();
+    //         return redirect()->route('roles.index')->with('success','Roles deleted successfully.');
+    //     } catch (\Throwable $th) {
+    //         DB::rollback();
+    //         return redirect()->route('roles.index')->with('error',$th->getMessage());
+    //     }
+    // }
 }

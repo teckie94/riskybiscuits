@@ -57,6 +57,7 @@
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div> --}}
+
                     {{-- Start Date --}}
                     <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Start Date</label>
@@ -67,10 +68,12 @@
                             placeholder="Start Date" 
                             name="start_date" 
                             value="{{ old('start_date') }}">
+
                         @error('start_date')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
+
                     {{-- End Date --}}
                     <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>End Date</label>
@@ -81,10 +84,12 @@
                             placeholder="End Date" 
                             name="end_date" 
                             value="{{ old('end_date') }}">
+
                         @error('end_date')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
+
 
                     {{-- Date --}}
                     {{-- <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
@@ -100,7 +105,7 @@
                         @error('date')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
-                    </div>--}}
+                    </div> --}}
 
 
                     {{-- Start Time --}}
