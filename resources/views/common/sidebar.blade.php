@@ -86,7 +86,8 @@
 
 
 
-    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner'))    <!-- Heading -->
+    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner'))
+    <!-- Heading -->
     <div class="sidebar-heading">
         Workslots
     </div>
