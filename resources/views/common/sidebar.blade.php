@@ -107,7 +107,7 @@
     @endif
 
 
-   @if(auth()->user()->hasRole('Manager') || auth()->user()->hasRole('Staff'))
+   @if(auth()->user()->hasRole('Manager') || auth()->user()->hasRole('Staff') || auth()->user()->hasRole('SuperAdmin'))
         <!-- Heading -->
         <div class="sidebar-heading">
             Cafe
