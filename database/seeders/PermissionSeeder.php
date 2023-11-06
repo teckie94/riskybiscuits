@@ -94,10 +94,9 @@ class PermissionSeeder extends Seeder
         $role->syncPermissions($permissions_saved);
         
         //CafeStaff Role Sync Permission
-        $users = User::where('role_id', 4)->get();
-        foreach($users as $user){
-            $user->assignRole($role->id);
-        }
+        $user = User::where('role_id', 4)->first();
+        $user->assignRole($role->id);
+
 
         //SuperAdmin Permissions
         $adminpermissions = [

@@ -50,8 +50,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'staff1@gmail.com',
             'mobile_number' =>  '83358421',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 4,
-            'requested_workslots' => 5
+            'role_id'       => 4
         ]);
 
         $user = User::create([
@@ -60,8 +59,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'staff2@gmail.com',
             'mobile_number' =>  '83358422',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 4,
-            'requested_workslots' => 5
+            'role_id'       => 4
         ]);
 
         $user = User::create([
@@ -70,8 +68,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'staff3@gmail.com',
             'mobile_number' =>  '83358423',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 4,
-            'requested_workslots' => 5
+            'role_id'       => 4
         ]);
     }
 }

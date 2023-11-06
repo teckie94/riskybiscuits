@@ -147,3 +147,4 @@ class WorkSlotController extends Controller
 
         }
 }
+
