@@ -140,6 +140,13 @@ class StaffRoleBidController extends Controller
                 'status' => $request->status,
                 'remarks' => $request->remarks,
             ]);
+            // if($request->status == 1){
+            //     $user = User::whereId($request->user_id)->first();
+            //     $user->update ([
+            //         'staff_role_id'=> $request->staff_role_id,    
+            //     ]);
+            // }
+
             DB::commit();
             return redirect()->route('staffrolebid.index')->with('success','Staff Role Bids updated successfully.');
         

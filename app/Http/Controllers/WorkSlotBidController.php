@@ -8,14 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\StaffRoleBid;
 
 class WorkSlotBidController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -25,11 +21,6 @@ class WorkSlotBidController extends Controller
         $this->middleware('permission:workslotbid-delete', ['only' => ['destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         if(auth()->user()->role_id == 3){
@@ -51,45 +42,53 @@ class WorkSlotBidController extends Controller
                 'users' => $users
             ]);
         }
-
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $permissions = Permission::all();
+        $workslots = WorkSlot::query()
+                            ->where('staff_role_id', auth()->user()->staff_role_id)
+                            ->whereNull('deleted_at')
+                            ->paginate(10);
+        $workslotbids = WorkSlotBid::query()
+                            ->where('user_id', auth()->user()->id)
+                            ->whereNull('deleted_at')
+                            ->paginate(10);
 
-        return view('workslotbids.add', ['permissions' => $permissions]);
+        return view('workslotbids.create', [
+            'workslots' => $workslots,
+            'workslotbids' => $workslotbids, // Pass the $workslotbids variable to the view
+            'permissions' => $permissions,
+
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        $request->validate([
+        'work_slot_id' => 'required',
+        'user_id' => 'required'
+        ]);
         DB::beginTransaction();
         try {
-            $request->validate([
-                'name' => 'required',
-                'guard_name' => 'required'
+            // Store Data
+            $bid = WorkSlotBid::create([
+                'work_slot_id' => $request->work_slot_id,
+                'user_id' => $request->user_id,
+                'status' => '0',
+                'created_at' => now()
             ]);
-    
-            Role::create($request->all());
-
+            // Commit And Redirected To Listing
             DB::commit();
-            return redirect()->route('workslotbids.index')->with('success','Roles created successfully.');
+                
+            //dd($request);
+            return redirect()->route('workslotbids.create')->with('success','Bid Created Successfully.');
         } catch (\Throwable $th) {
-            DB::rollback();
-            return redirect()->route('workslotbids.add')->with('error',$th->getMessage());
+            // Rollback and return with Error
+            DB::rollBack();
+            return redirect()->route('workslotbids.create')->with('error',$th->getMessage());
         }
-        
     }
 
     /**
@@ -103,28 +102,7 @@ class WorkSlotBidController extends Controller
     //     //
     // }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit($id)
-    // {
-    //     $role = Role::whereId($id)->with('permissions')->first();
-        
-    //     $permissions = Permission::all();
 
-    //     return view('workslotbids.edit', ['workslotbids' => $workslotbids, 'permissions' => $permissions]);
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, WorkSlotBid $workSlotBid)
     {
         // Validate Request
@@ -141,10 +119,10 @@ class WorkSlotBidController extends Controller
             ]);
             DB::commit();
 
-            return redirect()->route('workslotbid.index')->with('success','Work Slot Bid updated successfully.');
+            return redirect()->route('workslotbids.index')->with('success','Work Slot Bid updated successfully.');
         } catch (\Throwable $th) {
             DB::rollback();
-            return redirect()->route('workslotbid.index',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
+            return redirect()->route('workslotbids.index',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
         }
     }
 
@@ -154,18 +132,18 @@ class WorkSlotBidController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //     DB::beginTransaction();
-    //     try {
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+        try {
     
-    //         Role::whereId($id)->delete();
+            WorkSlotBid::where(['id' => $id])->delete();
             
-    //         DB::commit();
-    //         return redirect()->route('roles.index')->with('success','Roles deleted successfully.');
-    //     } catch (\Throwable $th) {
-    //         DB::rollback();
-    //         return redirect()->route('roles.index')->with('error',$th->getMessage());
-    //     }
-    // }
+            DB::commit();
+            return redirect()->route('workslotbids.index')->with('success','Workslot deleted successfully.');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->route('workslotbids.index')->with('error',$th->getMessage());
+        }
+    }
 }

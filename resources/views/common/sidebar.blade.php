@@ -134,8 +134,10 @@
         <hr class="sidebar-divider d-none d-md-block">
     @endif
 
+
+
     <!-- Workslot Bids -->
-    @if(auth()->user()->hasRole('Manager') || auth()->user()->hasRole('Staff'))
+    @if(auth()->user()->hasRole('Manager') || (auth()->user()->hasRole('Staff')))
         <!-- Heading -->
         <div class="sidebar-heading">
             Workslot Bids
@@ -149,7 +151,7 @@
             </a>
             <div id="workslotBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('workslotbid.index') }}">View Work Slot Bids</a>
+                    <a class="collapse-item" href="{{ route('workslotbids.index') }}">View Work Slot Bids</a>
                 </div>
             </div>
         </li>
@@ -189,6 +191,4 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
-
 </ul>

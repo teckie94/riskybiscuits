@@ -23,7 +23,7 @@
                     Approve
                 </a>
                 <input type="hidden" name="status" value="1" />
-
+                <input type="hidden" name="staff_role_id" value="{{$staffrolebid->staff_role_id}}" />
                 </form>
             </div>
         </div>
