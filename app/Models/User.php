@@ -59,5 +59,11 @@ class User extends Authenticatable
         return "{$this->first_name} {$this->last_name}";
     }
 
+    public function staffRole()
+    {
+        return $this->belongsTo(StaffRoles::class, 'staff_role_id');
+    }
+
+
 
 }

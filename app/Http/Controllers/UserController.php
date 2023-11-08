@@ -34,10 +34,10 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::with('roles')->paginate(10);
-        $staffroles = StaffRoles::paginate(10);
-        return view('users.index', ['users' => $users, 'staffroles' => $staffroles]);
+        $users = User::with('roles', 'staffRole')->paginate(10);
+        return view('users.index', ['users' => $users]);
     }
+
    
     public function create()
     {

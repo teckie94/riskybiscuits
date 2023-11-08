@@ -49,7 +49,8 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->mobile_number }}</td>
                                     <td>{{ $user->roles ? $user->roles->pluck('name')->first() : 'N/A' }}</td>
-                                    <td>{{ $staffroles }}</td>
+                                    <td>{{ $user->staffRole ? $user->staffRole->name : '-' }}</td>
+
                                     <td>
                                         @if ($user->status == 0)
                                             <span class="badge badge-danger">Inactive</span>
