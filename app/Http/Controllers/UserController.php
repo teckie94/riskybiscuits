@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\WorkSlotBid;
+use App\Models\StaffRoles;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('roles')->paginate(10);
-        return view('users.index', ['users' => $users]);
+        $staffroles = StaffRoles::paginate(10);
+        return view('users.index', ['users' => $users, 'staffroles' => $staffroles]);
     }
    
     public function create()

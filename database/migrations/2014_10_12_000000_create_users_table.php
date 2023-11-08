@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status')->default(1);
             $table->foreign('staff_role_id')->references('id')->on('staff_roles')
                         ->onUpdate('cascade')
-                        ->onDelete('cascade');;
+                        ->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

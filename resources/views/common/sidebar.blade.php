@@ -137,7 +137,7 @@
 
 
     <!-- Workslot Bids -->
-    @if(auth()->user()->hasRole('Manager') || (auth()->user()->hasRole('Staff')))
+    @if(auth()->user()->hasRole('Manager') || (auth()->user()->hasRole('Staff') && (auth()->user()->staff_role_id != null)))
         <!-- Heading -->
         <div class="sidebar-heading">
             Workslot Bids

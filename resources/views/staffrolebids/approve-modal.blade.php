@@ -18,12 +18,13 @@
                 <form id="staffRoleBidApprove-{{ $staffrolebid->id }}" method="POST" action="{{ route('staffrolebid.update', ['staffRoleBid' => $staffrolebid->id]) }}">
                     @csrf
                     @method('PUT')
-                <a class="btn btn-success" href="{{ route('logout') }}"
+                <a class="btn btn-success" href="{{route('logout')}}"
                     onclick="event.preventDefault(); document.getElementById('staffRoleBidApprove-{{ $staffrolebid->id }}').submit();">
                     Approve
                 </a>
                 <input type="hidden" name="status" value="1" />
                 <input type="hidden" name="staff_role_id" value="{{$staffrolebid->staff_role_id}}" />
+                <input type="hidden" name="user_id" value="{{$staffrolebid->user_id}}" />
                 </form>
             </div>
         </div>
