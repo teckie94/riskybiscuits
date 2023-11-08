@@ -15,6 +15,12 @@ class WorkSlotController extends Controller
     {
         $workSlots = WorkSlot::all();
         return view('workslot.index', compact('workSlots'));
+
+/*         $workSlots = WorkSlot::query()
+        ->where('staff_role_id', auth()->user()->staff_role_id)
+        ->whereNull('deleted_at')
+        ->paginate(10);
+        return view('workslot.index', ['workSlots' => $workSlots]); */
     }
 
     public function create()

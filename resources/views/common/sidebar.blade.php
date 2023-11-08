@@ -125,7 +125,6 @@
     @endif
 
 
-
     <!-- Nav Item - WORKSLOT BIDS -->
     @if(auth()->user()->hasRole('Manager') || (auth()->user()->hasRole('Staff') && (auth()->user()->staff_role_id != null)))
         <div class="sidebar-heading">
@@ -139,7 +138,12 @@
             </a>
             <div id="workslotBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('workslotbids.index') }}">View Work Slot Bids</a>
+                    <a class="collapse-item" href="{{ route('workslot.index') }}">View Workslots</a>
+                    
+                    @if(auth()->user()->hasRole('Staff'))
+                    <a class="collapse-item" href="{{ route('workslotbids.index') }}">My Bids</a>
+                    @endif
+                    
                 </div>
             </div>
         </li>

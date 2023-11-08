@@ -8,11 +8,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Work Slot Bids</h1>
-        @if (auth()->user()->hasRole('Staff'))
-        <a href="{{ route('workslotbids.create') }}" class="btn btn-sm btn-primary">
-            <i class="fas fa-plus"></i> Add New
-        </a>
-        @endif
     </div>
 
     {{-- Alert Messages --}}
@@ -75,7 +70,7 @@
                                 </a>
                             </td>
                             @elseif($workslotbid->status != 0)
-                            <td>-</td>   
+                            <td>-</td>
                             @endif
                         </tr>
                         @endforeach
