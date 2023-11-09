@@ -46,7 +46,6 @@ class WorkSlotBidController extends Controller
 
     public function create()
     {
-        $permissions = Permission::all();
         $workslots = WorkSlot::query()
                             ->where('staff_role_id', auth()->user()->staff_role_id)
                             ->whereNull('deleted_at')
@@ -58,8 +57,7 @@ class WorkSlotBidController extends Controller
 
         return view('workslotbids.create', [
             'workslots' => $workslots,
-            'workslotbids' => $workslotbids, // Pass the $workslotbids variable to the view
-            'permissions' => $permissions,
+            'workslotbids' => $workslotbids,
 
         ]);
     }

@@ -8,9 +8,11 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Staff Role Bids</h1>
-        <a href="{{route('staffrolebid.create')}}" class="btn btn-sm btn-primary" >
+        @if((auth()->user()->role_id==4) && (auth()->user()->staff_role_id==null))
+        <a href="{{route('staffrolebids.create')}}" class="btn btn-sm btn-primary" >
             <i class="fas fa-plus"></i> Add New
         </a>
+        @endif
     </div>
 
     {{-- Alert Messages --}}
@@ -48,18 +50,11 @@
                                     Pending Approval
                                 @endif
                             </td>
-                            @if(auth()->user()->role_id==4)
-                            <td style="display: flex;">
-                                <a href="{{ route('staffrolebid.edit', ['staffRoleBid' => $staffrolebid->id]) }}" class="btn btn-primary m-2">
-                                    <i class="fa fa-pen"></i>
+                            @if((auth()->user()->role_id==4) && ($staffrolebid->status == 0))
+                            <td class="form-control-user" style="display: flex">
+                                <a id="btnDelete" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#deleteModal{{$staffrolebid->id}}">
+                                    <i class="fas fa-trash"></i>
                                 </a>
-                                <form method="POST" action="{{ route('staffrolebid.destroy', ['staffRoleBid' => $staffrolebid->id]) }}">
-                                @csrf
-                                @method('DELETE')
-                                    <button class="btn btn-danger m-2" type="submit">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
                             </td>
                             @elseif((auth()->user()->role_id==3) && ($staffrolebid->status == 0))
                             <td style="display: flex;">
@@ -84,6 +79,7 @@
 </div>
 @include('staffrolebids.approve-modal')
 @include('staffrolebids.reject-modal')
+@include('staffrolebids.delete-modal')
 @endsection
 
 @section('scripts')

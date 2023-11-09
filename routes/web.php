@@ -77,7 +77,7 @@ Route::middleware('auth')->prefix('cafes')->name('cafes.')->group(function(){
 
 
 //Staff Role Bids
-Route::middleware(['auth'])->prefix('staffrolebids')->name('staffrolebid.')->group(function() {
+Route::middleware(['auth'])->prefix('staffrolebids')->name('staffrolebids.')->group(function() {
     Route::get('/', [StaffRoleBidController::class, 'index'])->name('index');
     Route::get('/create', [StaffRoleBidController::class, 'create'])->name('create');
     Route::post('/store', [StaffRoleBidController::class, 'store'])->name('store');

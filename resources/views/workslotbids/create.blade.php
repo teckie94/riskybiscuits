@@ -39,9 +39,9 @@
                         <tr>
                             {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
                             <td>{{ $workslot->start_date }}</td>
+                            <td>{{$workslot->role->name}}</td>
                             <td>{{ $workslot->start_time }}</td>
                             <td>{{ $workslot->end_time }}</td>
-                            <td>{{$workslot->role->name}}</td>
                             <td>{{ $workslot->quantity }}</td>
                            
                             <td style="display: flex">
