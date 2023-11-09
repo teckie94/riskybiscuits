@@ -27,21 +27,18 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th width="20%">Work Slot</th>
+                            <th width="25%">Work Slot</th>
                             @if(auth()->user()->role_id == 3)
                             <th width="20%">User Name</th>
                             @endif
-                            <th width="20%">Applied On</th>
-                            <th width="20%">Status</th>
-                            <th width="20%">Action</th>
+                            <th width="15%">Applied On</th>
+                            <th width="15%">Status</th>
+                            <th width="15%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($workslotbids as $workslotbid)
-
-                    
                         <tr>
-
                             <td>{{$workslots->find($workslotbid->work_slot_id)->start_date . ' ' . $workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
                             @if(auth()->user()->role_id == 3)
                             <td>{{$users->find($workslotbid->user_id)->first_name . ' '. $users->find($workslotbid->user_id)->last_name}}</td>
@@ -56,7 +53,6 @@
                                     Pending Approval
                                 @endif
                             </td>
-                            
                             @if((auth()->user()->role_id==4) && ($workslotbid->status == 0))
                             <td class="form-control-user" style="display: flex">
                                 <a id="btnDelete" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#deleteModal{{$workslotbid->id}}">
