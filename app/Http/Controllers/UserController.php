@@ -234,10 +234,13 @@ class UserController extends Controller
     
     public function updateslots(Request $request, User $user)
     {
-        // Validations
-        //$request->validate([
-        //    'requested_workslots' => 'required',
-        //]);
+
+
+        //Validation
+        $request->validate([
+            'requested_workslots' => 'required|numeric|min:0',
+        ]);
+
 
         DB::beginTransaction();
         try {
