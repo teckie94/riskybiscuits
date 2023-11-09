@@ -45,25 +45,7 @@
                             <td>{{ $workslot->quantity }}</td>
                            
                             <td style="display: flex">
-                             <!-- To become bid button 
-                                <a href="{{-- {{ route('cafes.editcafe', ['cafe' => $workslot->id]) }} --}}"
-                                    class="btn-sm btn-primary m-2">
-                                    <i class="fa fa-pen"></i>
-                                </a>
-                                <a href="{{ route('cafes.editcafe', ['cafe' => $workslot->id, 'action' => 'add']) }}"
-                                    class="btn-sm btn-primary m-2">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                              
-                                <form method="POST" action="{{-- /cafes/deletecafe/{{$workslot->id}} --}}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn-sm btn-danger m-2" >
-                                    <i class="fas fa-trash"></i>
-                                
-                                </button>
-                                </form>
-                                -->
+                            
                          
                                 @if (!$existingBid)
                                     <form method="POST" action="{{ route('workslotbids.store') }}">

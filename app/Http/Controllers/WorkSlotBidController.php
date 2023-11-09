@@ -32,7 +32,8 @@ class WorkSlotBidController extends Controller
                 'workslots' => $workslots,
                 'users' => $users
             ]);
-        } else if(auth()->user()->role_id == 4) {
+            
+        } elseif(auth()->user()->role_id == 4) {
             $workslotbids = WorkSlotBid::where('user_id', auth()->user()->id)->paginate(10);
             $workslots = WorkSlot::paginate(10);
             $users = User::query()->where('id', auth()->user()->id)->paginate(10);
@@ -54,6 +55,8 @@ class WorkSlotBidController extends Controller
                             ->where('user_id', auth()->user()->id)
                             ->whereNull('deleted_at')
                             ->paginate(10);
+
+        //dd($workslots);
 
         return view('workslotbids.create', [
             'workslots' => $workslots,
