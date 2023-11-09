@@ -23,7 +23,6 @@
     </div>
     @endif
 
-
     {{-- Alert Messages --}}
     @include('common.alert')
 
@@ -49,37 +48,28 @@
 
                     <tbody>
                         @foreach ($workSlots as $workslot)
-                        <tr>
-                            {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
-                            <td>{{ $workslot->start_date }}</td>
-                            <td>{{$workslot->role->name}}</td>
-                            <td>{{ $workslot->start_time }}</td>
-                            <td>{{ $workslot->end_time }}</td>
-                            <td>{{ $workslot->quantity }}</td>
+                            <tr>
+                                {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
+                                <td>{{ $workslot->start_date }}</td>
+                                <td>{{$workslot->role->name}}</td>
+                                <td>{{ $workslot->start_time }}</td>
+                                <td>{{ $workslot->end_time }}</td>
+                                <td>{{ $workslot->quantity }}</td>
 
-                            @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner'))
-                            <td style="display: flex">
-                                <a href="{{ route('workslot.edit', ['workSlot' => $workslot->id]) }}"
-                                    class="btn-sm btn-primary m-2">
-                                    <i class="fa fa-pen"></i>
-                                </a>
+                                @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner'))
+                                    <td style="display: flex">
+                                        <a href="{{ route('workslot.edit', ['workSlot' => $workslot->id]) }}"
+                                            class="btn-sm btn-primary m-2">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
 
-                                <a class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
-                                    data-target="#deleteWorkslotModal{{ $workslot->id }}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-
-                            @elseif(auth()->user()->hasRole('Staff'))
-                            <td style="display: flex">
-                                <a href="{{-- {{ route('workslot.edit', ['workSlot' => $workslot->id]) }} --}}"
-                                    class="btn-sm btn-success m-2">
-                                    <i class="fas fa-check"></i>
-                                </a>
-                            </td>
-                            @endif
-
-                        </tr>
+                                        <a class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
+                                            data-target="#deleteWorkslotModal{{ $workslot->id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                @endif
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
