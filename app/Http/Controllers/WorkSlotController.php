@@ -38,7 +38,7 @@ class WorkSlotController extends Controller
             'end_date'                  => 'required',
             'start_time'                => 'required',
             'end_time'                  => 'required',
-            'quantity'                  => 'required',
+            'quantity'                  => 'required|numeric|min:1',
         ]);
 
         DB::beginTransaction();
@@ -92,7 +92,7 @@ class WorkSlotController extends Controller
                 /* 'end_date'                  => 'required', */
                 'start_time'                => 'required',
                 'end_time'                  => 'required',
-                'quantity'                  => 'required',
+                'quantity'                  => 'required|numeric|min:1',
         ]);
 
             DB::beginTransaction();
