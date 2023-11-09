@@ -40,13 +40,15 @@
                     <tbody>
                         @foreach ($workslotbids as $workslotbid)
                         <tr>
-                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_date}}</td>
-                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
-
+                            <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_date }}</td>
+                            <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_time .
+                            ' - ' . optional($workslots->find($workslotbid->work_slot_id))->end_time }}</td>
 
                             @if(auth()->user()->role_id == 3)
-                            <td>{{$users->find($workslotbid->user_id)->first_name . ' '. $users->find($workslotbid->user_id)->last_name}}</td>
+                                <td>{{ optional($users->find($workslotbid->user_id))->first_name . 
+                                ' ' . optional($users->find($workslotbid->user_id))->last_name }}</td>
                             @endif
+
                             
                             <td>{{$workslotbid->updated_at->format('d/m/Y h:i A')}}</td>
                             <td>
