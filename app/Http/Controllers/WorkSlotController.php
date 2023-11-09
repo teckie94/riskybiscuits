@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WorkSlot;
+use App\Models\WorkSlotBid;
 use App\Models\StaffRoles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +12,15 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class WorkSlotController extends Controller
 {
+
     public function index()
     {
-        $workSlots = WorkSlot::all();
+        $workSlots = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))->get();
+    
         return view('workslot.index', compact('workSlots'));
-
     }
+    
+
 
     public function create()
     {
