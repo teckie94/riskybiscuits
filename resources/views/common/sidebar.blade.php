@@ -138,12 +138,13 @@
             </a>
             <div id="workslotBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('workslotbids.create') }}">View Workslots</a>
-                    
+
                     @if(auth()->user()->hasRole('Staff'))
                     <a class="collapse-item" href="{{ route('workslotbids.index') }}">My Bids</a>
-                    @endif
-                    
+                    <a class="collapse-item" href="{{ route('workslotbids.create') }}">View Workslots</a>
+                    @elseif (auth()->user()->hasRole('Manager'))
+                    <a class="collapse-item" href="{{ route('workslotbids.index') }}">View Workslots</a>
+                    @endif  
                 </div>
             </div>
         </li>
