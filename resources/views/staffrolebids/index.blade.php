@@ -8,9 +8,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Staff Role Bids</h1>
-        <a href="{{route('staffrolebid.create')}}" class="btn btn-sm btn-primary" >
-            <i class="fas fa-plus"></i> Add New
-        </a>
+        
     </div>
 
     {{-- Alert Messages --}}
@@ -22,11 +20,11 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th width="20%">Staff Role</th>
-                            <th width="20%">User Name</th>
+                            <th width="30%">User Name</th>
                             <th width="20%">Applied On</th>
                             <th width="20%">Status</th>
                             <th width="20%">Action</th>
@@ -50,23 +48,23 @@
                             </td>
                             @if(auth()->user()->role_id==4)
                             <td style="display: flex;">
-                                <a href="{{ route('staffrolebid.edit', ['staffRoleBid' => $staffrolebid->id]) }}" class="btn btn-primary m-2">
+                                <a href="{{ route('staffrolebid.edit', ['staffRoleBid' => $staffrolebid->id]) }}" class="btn-sm btn-primary m-2">
                                     <i class="fa fa-pen"></i>
                                 </a>
                                 <form method="POST" action="{{ route('staffrolebid.destroy', ['staffRoleBid' => $staffrolebid->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                    <button class="btn btn-danger m-2" type="submit">
+                                    <button class="btn-sm btn-danger m-2" type="submit">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
                             </td>
                             @elseif((auth()->user()->role_id==3) && ($staffrolebid->status == 0))
                             <td style="display: flex;">
-                                <a id="btnApprove" class="btn btn-success m-2" href="#" data-toggle="modal" data-target="#approveModal{{$staffrolebid->id}}">
+                                <a id="btnApprove" class="btn-sm btn-success m-2" href="#" data-toggle="modal" data-target="#approveModal{{$staffrolebid->id}}">
                                     <i class="fas fa-check"></i>
                                 </a>
-                                <a id="btnReject" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#rejectModal{{$staffrolebid->id}}">
+                                <a id="btnReject" class="btn-sm btn-danger m-2" href="#" data-toggle="modal" data-target="#rejectModal{{$staffrolebid->id}}">
                                     <i class="fas fa-times"></i>
                                 </a>
                             </td>
