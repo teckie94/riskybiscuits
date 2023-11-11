@@ -26,10 +26,10 @@ class HomeController extends Controller
 
         $user = auth()->user();
 
-        // Total number of workslot bids for the logged-in user
+        //Total number of workslot bids for the logged-in user
         $totalWorkSlotBids = $user->workSlotBids()->count();
 
-        // Total number of approved workslot bids for the logged-in user
+        //Total number of approved workslot bids for the logged-in user
         $approvedWorkSlotBids = $user->workSlotBids()->where('status', 1)->count();
 
          $staffCount = User::where('role_id', 4)->count();
@@ -43,24 +43,39 @@ class HomeController extends Controller
          $pendingWorkslotApprovalCount = WorkSlotBid::whereHas('user', function ($query) {$query->where('role_id', 4);
          })->where('status', 0)->count();
 
-         //Retrieve the count of work slots that do not have a corresponding entry in the WorkSlotBid table
+        //Retrieve the count of work slots that do not have a corresponding entry in the WorkSlotBid table
         $availableWorkslotsCount = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)
         ->pluck('work_slot_id'))
         ->count();
 
+        //Calling function and passing in staff_role_id as the parameter
         $availableWorkslotsCountForChef = $this->getAvailableWorkslotsCount(1);
         $availableWorkslotsCountForWaiter = $this->getAvailableWorkslotsCount(2);
         $availableWorkslotsCountForCashier = $this->getAvailableWorkslotsCount(3);
 
-        //Retrieve dynamic data for the pie chart / bar chart
+        //Retrieve dynamic data for the pie chart
         $countData = [$chefCount, $cashierCount, $waiterCount];
+
+        //Retrieve dynamic data for the bar chart - count of available workslots for each day of the week
+        $dayOfWeekCounts = [];
+        for ($day = 1; $day <= 7; $day++) {
+            // Get the count of available workslots for the current day
+            $count = WorkSlot::whereRaw('DAYOFWEEK(start_date) = ?', [$day])
+                ->whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
+                ->count();
+
+            //Add the count to the data array
+            $dayOfWeekCounts[] = $count;
+        }
      
          return view('home', compact('staffCount', 'pendingStaffRoleApprovalCount',
          'pendingWorkslotApprovalCount', 'availableWorkslotsCount', 'countData',
-         'availableWorkslotsCountForChef','availableWorkslotsCountForWaiter','availableWorkslotsCountForCashier','totalWorkSlotBids','approvedWorkSlotBids'));
+         'availableWorkslotsCountForChef','availableWorkslotsCountForWaiter',
+         'availableWorkslotsCountForCashier','totalWorkSlotBids','approvedWorkSlotBids','dayOfWeekCounts'));
      }
 
 
+     //For staff dashboard - get data based on staff_role_id
      public function getAvailableWorkslotsCount($staffRoleId)
     {
         return WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))

@@ -1,4 +1,4 @@
-// Bar Chart Example
+
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
@@ -9,7 +9,7 @@ var myBarChart = new Chart(ctx, {
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: countData,
+      data: dayOfWeekCounts,
     }],
   },
   options: {
@@ -25,24 +25,23 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'day'  // Change 'month' to 'day'
+          unit: 'day'
         },
         gridLines: {
           display: false,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 7  // Adjust the maximum number of ticks to fit all days
+          maxTicksLimit: 10
         },
         maxBarThickness: 25,
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 30,
-          maxTicksLimit: 5,
+          max: 10,
+          maxTicksLimit: 10,
           padding: 10,
-          // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             return number_format(value);
           }
