@@ -23,28 +23,69 @@ class HomeController extends Controller
 
      public function index(Request $request)
      {
+
+        $user = auth()->user();
+
+        // Total number of workslot bids for the logged-in user
+        $totalWorkSlotBids = $user->workSlotBids()->count();
+
+        // Total number of approved workslot bids for the logged-in user
+        $approvedWorkSlotBids = $user->workSlotBids()->where('status', 1)->count();
+
          $staffCount = User::where('role_id', 4)->count();
          $chefCount = User::where('staff_role_id', 1)->count();
          $waiterCount = User::where('staff_role_id', 2)->count();
          $cashierCount = User::where('staff_role_id', 3)->count();
      
-         $pendingStaffRoleApprovalCount = StaffRoleBid::whereHas('user', function ($query) {
-             $query->where('role_id', 4);
+         $pendingStaffRoleApprovalCount = StaffRoleBid::whereHas('user', function ($query) {$query->where('role_id', 4);
          })->where('status', 0)->count();
 
-         $pendingWorkslotApprovalCount = WorkSlotBid::whereHas('user', function ($query) {
-            $query->where('role_id', 4);
-        })->where('status', 0)->count();
+         $pendingWorkslotApprovalCount = WorkSlotBid::whereHas('user', function ($query) {$query->where('role_id', 4);
+         })->where('status', 0)->count();
 
-         // Retrieve the count of work slots that do not have a corresponding entry in the WorkSlotBid table
-        $availableWorkslotsCount = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))->count();
+         //Retrieve the count of work slots that do not have a corresponding entry in the WorkSlotBid table
+        $availableWorkslotsCount = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)
+        ->pluck('work_slot_id'))
+        ->count();
 
-        // Retrieve dynamic data, for example from your database
-        $revenueData = [$chefCount, $cashierCount, $waiterCount];
+        $availableWorkslotsCountForChef = $this->getAvailableWorkslotsCount(1);
+        $availableWorkslotsCountForWaiter = $this->getAvailableWorkslotsCount(2);
+        $availableWorkslotsCountForCashier = $this->getAvailableWorkslotsCount(3);
+
+        //Retrieve dynamic data for the pie chart / bar chart
+        $countData = [$chefCount, $cashierCount, $waiterCount];
      
          return view('home', compact('staffCount', 'pendingStaffRoleApprovalCount',
-         'pendingWorkslotApprovalCount', 'availableWorkslotsCount', 'revenueData'));
+         'pendingWorkslotApprovalCount', 'availableWorkslotsCount', 'countData',
+         'availableWorkslotsCountForChef','availableWorkslotsCountForWaiter','availableWorkslotsCountForCashier','totalWorkSlotBids','approvedWorkSlotBids'));
      }
+
+
+        //Retrieve the count of work slots for CHEF that do not have a corresponding entry in the WorkSlotBid table
+/*         
+        $availableWorkslotsCountForChef = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
+        ->where('staff_role_id', 1)
+        ->count();
+
+        $availableWorkslotsCountForWaiter = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
+        ->where('staff_role_id', 2)
+        ->count();
+
+        $availableWorkslotsCountForCashier = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
+        ->where('staff_role_id', 3)
+        ->count(); 
+*/
+
+
+     //
+     public function getAvailableWorkslotsCount($staffRoleId)
+    {
+        return WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
+            ->where('staff_role_id', $staffRoleId)
+            ->count();
+    }
+
+
      
 
     public function getProfile()
@@ -110,3 +151,4 @@ class HomeController extends Controller
         }
     }
 }
+
