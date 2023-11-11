@@ -61,23 +61,6 @@ class HomeController extends Controller
      }
 
 
-        //Retrieve the count of work slots for CHEF that do not have a corresponding entry in the WorkSlotBid table
-/*         
-        $availableWorkslotsCountForChef = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
-        ->where('staff_role_id', 1)
-        ->count();
-
-        $availableWorkslotsCountForWaiter = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
-        ->where('staff_role_id', 2)
-        ->count();
-
-        $availableWorkslotsCountForCashier = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
-        ->where('staff_role_id', 3)
-        ->count(); 
-*/
-
-
-     //
      public function getAvailableWorkslotsCount($staffRoleId)
     {
         return WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))
@@ -85,8 +68,6 @@ class HomeController extends Controller
             ->count();
     }
 
-
-     
 
     public function getProfile()
     {

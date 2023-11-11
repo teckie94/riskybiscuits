@@ -83,6 +83,7 @@
         </div>
 
         <!-- Available Workslots -->
+        @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2 || auth()->user()->role_id == 3)
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
@@ -104,6 +105,7 @@
             </div>
         </div>
 
+
         <!-- Total Staff -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
@@ -121,7 +123,9 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
+    
 
     <!-- Cards section -->
 {{--     <div class="row">
