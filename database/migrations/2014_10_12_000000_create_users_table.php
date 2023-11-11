@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('mobile_number')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role_id')->default(4)->comment('1=SuperAdmin, 2=CafeOwner, 3=Manager, 4=Staff');
             $table->unsignedBigInteger('staff_role_id')->nullable()->comment('1=Chef, 2=Waiter, 3=Cashier');

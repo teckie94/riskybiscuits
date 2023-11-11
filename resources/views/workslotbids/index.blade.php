@@ -27,10 +27,11 @@
                 <table class="table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th width="15%">Date</th>
+                            <th width="10%">Date</th>
                             <th width="15%">Time</th>
+                            <th width="10%">Role</th>
                             @if(auth()->user()->role_id == 3)
-                            <th width="30%">User Name</th>
+                            <th width="25%">Staff Name</th>
                             @endif
                             <th width="15%">Applied On</th>
                             <th width="15%">Status</th>
@@ -41,8 +42,20 @@
                         @foreach ($workslotbids as $workslotbid)
                         <tr>
                             <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_date }}</td>
+                            
                             <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_time .
                             ' - ' . optional($workslots->find($workslotbid->work_slot_id))->end_time }}</td>
+
+                            <td>
+                                @if(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 1)
+                                    Chef
+                                @elseif(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 2)
+                                    Waiter
+                                @elseif(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 3)
+                                    Cashier
+                                @endif
+                            </td>
+
 
                             @if(auth()->user()->role_id == 3)
                                 <td>{{ optional($users->find($workslotbid->user_id))->first_name . 

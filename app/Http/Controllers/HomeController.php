@@ -24,6 +24,9 @@ class HomeController extends Controller
      public function index(Request $request)
      {
          $staffCount = User::where('role_id', 4)->count();
+         $chefCount = User::where('staff_role_id', 1)->count();
+         $waiterCount = User::where('staff_role_id', 2)->count();
+         $cashierCount = User::where('staff_role_id', 3)->count();
      
          $pendingStaffRoleApprovalCount = StaffRoleBid::whereHas('user', function ($query) {
              $query->where('role_id', 4);
@@ -37,7 +40,7 @@ class HomeController extends Controller
         $availableWorkslotsCount = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))->count();
 
         // Retrieve dynamic data, for example from your database
-        $revenueData = [$staffCount, $pendingStaffRoleApprovalCount, $availableWorkslotsCount];
+        $revenueData = [$chefCount, $cashierCount, $waiterCount];
      
          return view('home', compact('staffCount', 'pendingStaffRoleApprovalCount',
          'pendingWorkslotApprovalCount', 'availableWorkslotsCount', 'revenueData'));

@@ -93,9 +93,8 @@
     </div>
 
     <!-- Cards section -->
-    <div class="row">
+{{--     <div class="row">
         <div class="col-lg-6">
-            <!-- Basic Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
@@ -106,19 +105,14 @@
                     easily modified with no need for any custom CSS!
                 </div>
             </div>
-
         </div>
 
         <div class="col-lg-6">
-
-            <!-- Collapsable Card Example -->
             <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
                     role="button" aria-expanded="true" aria-controls="collapseCardExample">
                     <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
                 </a>
-                <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample">
                     <div class="card-body">
                         This is a collapsable card example using Bootstrap's built in collapse
@@ -127,10 +121,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
-    <!-- End of Cards section -->
+    </div> --}}
+
 
 
     <!-- Charts section -->
@@ -150,31 +143,15 @@
             </div>
         </div>
 
-        <!-- Area Chart -->
-        <div class="col-xl-6 col-lg-7">
 
-            <!-- Area Chart -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-                </div>
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Donut Chart -->
+        <!-- Staff Roles Chart -->
         <div class="col-xl-6 col-lg-5">
             <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
+
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Staff Roles</h6>
                 </div>
-                <!-- Card Body -->
+
                     <div class="card-body">
                     <div class="chart-pie pt-4 pb-2">
                         <canvas id="myPieChart"></canvas>

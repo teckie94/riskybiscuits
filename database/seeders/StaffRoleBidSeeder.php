@@ -38,5 +38,11 @@ class StaffRoleBidSeeder extends Seeder
             'user_id' => 6,
             'status' => 0,
         ]);
+        $workslot = StaffRoleBid::create([
+            'cafe_id'=> 1,
+            'staff_role_id'=> 1,
+            'user_id'=> 7,
+            'status'=> 0,
+            ]);
     }
 }
