@@ -42,7 +42,7 @@
                             <th width="15%">Start Time</th>
                             <th width="15%">End Time</th>
                             <th width="15%">Staff Required</th>
-                            @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner'))
+                            @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner') || auth()->user()->hasRole('Manager'))
                             <th width="15%">Action</th>
                             @endif
                         </tr>

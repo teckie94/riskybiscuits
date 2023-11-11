@@ -56,8 +56,8 @@ class UserController extends Controller
             'email'         => 'required|unique:users,email',
             'mobile_number' => 'required|numeric|digits:8',
             'role_id'       =>  'required|exists:roles,id',
-            'staff_role_id' => 'required',
-            'requested_workslots' => 'required',
+            //'staff_role_id' => 'required',
+            //'requested_workslots' => 'required',
             'status'       =>  'required|numeric|in:0,1',
         ]);
 
@@ -71,8 +71,8 @@ class UserController extends Controller
                 'email'         => $request->email,
                 'mobile_number' => $request->mobile_number,
                 'role_id'       => $request->role_id,
-                'staff_role_id' => $request->staff_role_id,
-                'requested_workslots' => $request->requested_workslots,
+                //'staff_role_id' => $request->staff_role_id,
+                //'requested_workslots' => $request->requested_workslots,
                 'status'        => $request->status,
                 /* 'password'      => Hash::make($request->first_name.'@'.$request->mobile_number) */
                 'password' => Hash::make($request->password), // Set the password field

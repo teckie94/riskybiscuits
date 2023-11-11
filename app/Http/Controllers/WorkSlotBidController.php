@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\StaffRoles;
 use App\Models\WorkSlot;
 use App\Models\WorkSlotBid;
 use App\Models\User;
@@ -55,9 +57,6 @@ class WorkSlotBidController extends Controller
                             ->where('user_id', auth()->user()->id)
                             ->whereNull('deleted_at')
                             ->paginate(10);
-
-        //dd($workslots);
-
         return view('workslotbids.create', [
             'workslots' => $workslots,
             'workslotbids' => $workslotbids,
@@ -91,17 +90,55 @@ class WorkSlotBidController extends Controller
             return redirect()->route('workslotbids.create')->with('error',$th->getMessage());
         }
     }
+    public function offer()
+    {
+        $workslots = WorkSlot::query()
+                            ->whereNull('deleted_at')
+                            ->paginate(10);
+        $workslotbids = WorkSlotBid::query()
+                            ->whereNull('deleted_at')
+                            ->paginate(10);
+        $users = User::query()
+                ->paginate(10);
+        $staffroles = StaffRoles::query()
+                            ->paginate(10);
+        return view('workslotbids.offer', [
+            'workslots' => $workslots,
+            'workslotbids' => $workslotbids,
+            'users' =>$users,
+            'staffroles' => $staffroles
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     //
-    // }
+        ]);
+    }
+
+    public function offerstore(Request $request){
+
+        $request->validate([
+            'work_slot_id' => 'required',
+            'user_id' => 'required'
+        ]);
+        DB::beginTransaction();
+        try {
+            // Store Data
+            $bid = WorkSlotBid::create([
+                'work_slot_id' => $request->work_slot_id,
+                'user_id' => $request->user_id,
+                'status' => '2',
+                'created_at' => now()
+            ]);
+            // Commit And Redirected To Listing
+            DB::commit();
+                
+            //dd($request);
+            return redirect()->route('workslotbids.offer')->with('success','Bid Offered Successfully.');
+        } catch (\Throwable $th) {
+            // Rollback and return with Error
+            DB::rollBack();
+            return redirect()->route('workslotbids.offer')->with('error',$th->getMessage());
+        }
+
+
+    }
 
 
     public function update(Request $request, WorkSlotBid $workSlotBid)
@@ -111,7 +148,7 @@ class WorkSlotBidController extends Controller
             'status' => 'required',
         ]);
 
-        DB::beginTransaction();
+        DB::beginTransaction();     
         try {
             
             $workSlotBid->update([

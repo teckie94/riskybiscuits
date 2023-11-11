@@ -78,31 +78,6 @@
     <hr class="sidebar-divider">
     @endif --}}
 
-
-    <!-- Nav Item - WORKSLOTS -->
-    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner'))
-    <div class="sidebar-heading">
-        Workslots
-    </div>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#workslots"
-            aria-expanded="true" aria-controls="workslots">
-            <i class="fas fa-table"></i>
-            <span>Manage Workslots</span>
-        </a>
-        <div id="workslots" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('workslot.index') }}">View Workslots</a>
-                <a class="collapse-item" href="{{ route('workslot.create') }}">Add New Slot</a>
-                <a class="collapse-item" href="{{ route('workslot.import') }}">Import Workslots</a>
-            </div>
-        </div>
-    </li>
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    @endif
-
-
     <!-- Nav Item - STAFFROLE BIDS -->
     @if(auth()->user()->hasRole('Manager') || auth()->user()->hasRole('Staff'))
     <div class="sidebar-heading">
@@ -125,31 +100,37 @@
     @endif
 
 
-    <!-- Nav Item - WORKSLOT BIDS -->
-    @if(auth()->user()->hasRole('Manager') || (auth()->user()->hasRole('Staff') && (auth()->user()->staff_role_id != null)))
-        <div class="sidebar-heading">
-            Workslot Bids
-        </div>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#workslotBids"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-table"></i>
-                <span>Manage Workslot Bids</span>
-            </a>
-            <div id="workslotBids" class="collapse" aria-labelledby="headingBids" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-
-                    @if(auth()->user()->hasRole('Staff'))
-                    <a class="collapse-item" href="{{ route('workslotbids.index') }}">My Bids</a>
-                    <a class="collapse-item" href="{{ route('workslotbids.create') }}">View Workslots</a>
-                    @elseif (auth()->user()->hasRole('Manager'))
-                    <a class="collapse-item" href="{{ route('workslotbids.index') }}">View Workslots</a>
-                    @endif  
-                </div>
+    <!-- Nav Item - WORKSLOTS -->
+    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner') || 
+    auth()->user()->hasRole('Manager') || (auth()->user()->hasRole('Staff') && (auth()->user()->staff_role_id != null)))
+    <div class="sidebar-heading">
+        Workslots
+    </div>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#workslots"
+            aria-expanded="true" aria-controls="workslots">
+            <i class="fas fa-table"></i>
+            <span>Manage Workslots</span>
+        </a>
+        <div id="workslots" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+            @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner') )
+                <a class="collapse-item" href="{{ route('workslot.index') }}">View Workslots</a>
+                <a class="collapse-item" href="{{ route('workslot.create') }}">Add New Slot</a>
+                <a class="collapse-item" href="{{ route('workslot.import') }}">Import Workslots</a>
+            @elseif(auth()->user()->hasRole('Staff'))
+                <a class="collapse-item" href="{{ route('workslotbids.index') }}">My Bids</a>
+                <a class="collapse-item" href="{{ route('workslotbids.create') }}">Available Workslots</a>
+                <a class="collapse-item" href="{{ route('workslotbids.offer') }}">Offered Workslots</a>
+            @elseif (auth()->user()->hasRole('Manager'))
+                <a class="collapse-item" href="{{ route('workslotbids.index') }}">View Workslot Bids</a>
+                <a class="collapse-item" href="{{ route('workslotbids.offer') }}">Offer Workslots</a>
+            @endif
             </div>
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
     @endif
 
     <!-- Nav Item - USERS & PERMISSIONS -->

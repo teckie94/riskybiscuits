@@ -27,22 +27,24 @@
                 <table class="table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th width="20%">Work Slot</th>
+                            <th width="15%">Date</th>
+                            <th width="15%">Time</th>
                             @if(auth()->user()->role_id == 3)
-                            <th width="30%">User Name</th>
+                            <th width="15%">User Name</th>
                             @endif
                             <th width="20%">Applied On</th>
-                            <th width="20%">Status</th>
-                            <th width="20%">Action</th>
+                            <th width="15%">Status</th>
+                            <th width="10%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                        $workslotbids = $workslotbids->where('status','<', 1);
+                        @endphp
                         @foreach ($workslotbids as $workslotbid)
                         <tr>
                             <td>{{$workslots->find($workslotbid->work_slot_id)->start_date}}</td>
                             <td>{{$workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
-
-
                             @if(auth()->user()->role_id == 3)
                             <td>{{$users->find($workslotbid->user_id)->first_name . ' '. $users->find($workslotbid->user_id)->last_name}}</td>
                             @endif
@@ -88,7 +90,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$workslotbids->links()}}
             </div>
         </div>
     </div>
