@@ -24,25 +24,29 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th width="25%">Work Slot</th>
+                            <th width="20%">Work Slot</th>
                             @if(auth()->user()->role_id == 3)
-                            <th width="20%">User Name</th>
+                            <th width="30%">User Name</th>
                             @endif
-                            <th width="15%">Applied On</th>
-                            <th width="15%">Status</th>
-                            <th width="15%">Action</th>
+                            <th width="20%">Applied On</th>
+                            <th width="20%">Status</th>
+                            <th width="20%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($workslotbids as $workslotbid)
                         <tr>
-                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_date . ' ' . $workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
+                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_date}}</td>
+                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
+
+
                             @if(auth()->user()->role_id == 3)
                             <td>{{$users->find($workslotbid->user_id)->first_name . ' '. $users->find($workslotbid->user_id)->last_name}}</td>
                             @endif
+                            
                             <td>{{$workslotbid->updated_at->format('d/m/Y h:i A')}}</td>
                             <td>
                                 @if($workslotbid->status == 1)
@@ -55,19 +59,25 @@
                             </td>
                             @if((auth()->user()->role_id==4) && ($workslotbid->status == 0))
                             <td class="form-control-user" style="display: flex">
-                                <a id="btnDelete" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#deleteModal{{$workslotbid->id}}">
+                                <a id="btnDelete" class="btn-sm btn-danger m-2" href="#" data-toggle="modal" 
+                                    data-target="#deleteModal{{$workslotbid->id}}">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
+
                             @elseif((auth()->user()->role_id==3) && ($workslotbid->status == 0))
                             <td class="form-control-user" style="display: flex">
-                                <a id="btnApprove" class="btn btn-success m-2" href="#" data-toggle="modal" data-target="#approveModal{{$workslotbid->id}}">
+                                <a id="btnApprove" class="btn-sm btn-success m-2" href="#" data-toggle="modal"
+                                    data-target="#approveModal{{$workslotbid->id}}">
                                     <i class="fas fa-check"></i>
                                 </a>
-                                <a id="btnReject" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#rejectModal{{$workslotbid->id}}">
+                                
+                                <a id="btnReject" class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
+                                    data-target="#rejectModal{{$workslotbid->id}}">
                                     <i class="fas fa-times"></i>
                                 </a>
                             </td>
+                            
                             @elseif($workslotbid->status != 0)
                             <td>-</td>
                             @endif

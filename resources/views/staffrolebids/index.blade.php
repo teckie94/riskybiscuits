@@ -24,11 +24,11 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th width="20%">Staff Role</th>
-                            <th width="20%">User Name</th>
+                            <th width="30%">User Name</th>
                             <th width="20%">Applied On</th>
                             <th width="20%">Status</th>
                             <th width="20%">Action</th>
@@ -58,10 +58,10 @@
                             </td>
                             @elseif((auth()->user()->role_id==3) && ($staffrolebid->status == 0))
                             <td style="display: flex;">
-                                <a id="btnApprove" class="btn btn-success m-2" href="#" data-toggle="modal" data-target="#approveModal{{$staffrolebid->id}}">
+                                <a id="btnApprove" class="btn-sm btn-success m-2" href="#" data-toggle="modal" data-target="#approveModal{{$staffrolebid->id}}">
                                     <i class="fas fa-check"></i>
                                 </a>
-                                <a id="btnReject" class="btn btn-danger m-2" href="#" data-toggle="modal" data-target="#rejectModal{{$staffrolebid->id}}">
+                                <a id="btnReject" class="btn-sm btn-danger m-2" href="#" data-toggle="modal" data-target="#rejectModal{{$staffrolebid->id}}">
                                     <i class="fas fa-times"></i>
                                 </a>
                             </td>
