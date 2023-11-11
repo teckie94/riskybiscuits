@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Requested Workslots')
+@section('title', 'Requested Workslots')
 
 @section('content')
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Edit Requested Workslots</h1>
+        <h1 class="h3 mb-0 text-gray-800">Requested Workslots</h1>
     </div>
 
     {{-- Alert Messages --}}
@@ -16,7 +16,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Edit Requested Workslots</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Requested Workslots</h6>
             
         </div>
         <div class="card-body">
@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-@include('users.editRequestedWorkslot-modal')
+@include('users.slotsConfirm-modal')
 @endsection
 
 @section('scripts')

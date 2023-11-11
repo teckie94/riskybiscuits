@@ -73,7 +73,6 @@
                                     data-target="#approveModal{{$workslotbid->id}}">
                                     <i class="fas fa-check"></i>
                                 </a>
-                                
                                 <a id="btnReject" class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
                                     data-target="#rejectModal{{$workslotbid->id}}">
                                     <i class="fas fa-times"></i>

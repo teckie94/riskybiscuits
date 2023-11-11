@@ -27,6 +27,10 @@ class PermissionSeeder extends Seeder
             'staffrole-create',
             'staffrole-edit',
             'staffrole-delete',
+            'user-list',
+            'user-create',
+            'user-edit',
+            'user-delete',
         ];
         //Create CafeOwner Role Permissions
         foreach($cafeownerpermissions as $permission){
@@ -102,10 +106,6 @@ class PermissionSeeder extends Seeder
 
         //SuperAdmin Permissions
         $adminpermissions = [
-            'user-list',
-            'user-create',
-            'user-edit',
-            'user-delete',
             'role-create',
             'role-edit',
             'role-list',

@@ -30,7 +30,6 @@
                             @php
                                 $existingBid = $staffrolebids->where('staff_role_id', $staffrole->id)->where('user_id', auth()->user()->id)->first();
                             @endphp
-
                         <tr>
                             <td>{{ $staffrole->name }}</td>
                             <td style="display: flex">

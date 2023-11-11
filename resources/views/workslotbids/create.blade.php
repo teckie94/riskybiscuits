@@ -31,8 +31,8 @@
                             @php
                                 $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', auth()->user()->id)->first();
                             @endphp
-                        <tr>
                         @if (!$existingBid)
+                        <tr>
                             {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
                             <td>{{ $workslot->start_date }}</td>                            
                             <td>{{ $workslot->start_time . ' - ' .  $workslot->end_time }}</td>
@@ -46,8 +46,8 @@
                                     <button type="submit" class="btn btn-primary">Bid</button>
                                 </form>
                             </td>
-                        @endif
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
