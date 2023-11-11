@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Models\StaffRoleBid;
 
 class LoginController extends Controller
 {
@@ -36,5 +38,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $existingStaffRoleBid = StaffRoleBid::query()->where('user_id', $user->id)->whereColumn([
+            ['deleted_at', '==', null],
+            ['status','!=',-1]
+        ]);
+        if((is_null($user->staff_role_id) || $existingStaffRoleBid) && ($user->role_id==4))
+        {
+            $this->redirectTo='/staffrolebids/create';
+        }
     }
 }
