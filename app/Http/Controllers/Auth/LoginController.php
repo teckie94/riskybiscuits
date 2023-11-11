@@ -46,7 +46,7 @@ class LoginController extends Controller
             ['deleted_at', '==', null],
             ['status','!=',-1]
         ]);
-        if((is_null($user->staff_role_id) || $existingStaffRoleBid) && ($user->role_id==4))
+        if((is_null($user->staff_role_id) || !$existingStaffRoleBid) && ($user->role_id==4))
         {
             $this->redirectTo='/staffrolebids/create';
         }
