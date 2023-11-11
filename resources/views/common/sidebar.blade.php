@@ -21,7 +21,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner')||(auth()->user()->hasRole('Manager')))
+    @if(auth()->user()->hasRole('SuperAdmin') || auth()->user()->hasRole('CafeOwner'))
 
     <div class="sidebar-heading">
         Management
@@ -43,9 +43,7 @@
                 <a class="collapse-item" href="{{ route('users.create') }}">Add New User</a>
                 <a class="collapse-item" href="{{ route('users.import') }}">Import Users</a>
                 @endif
-                @if(auth()->user()->hasRole('Manager'))
-                <a class="collapse-item" href="{{ route('users.slots') }}">Edit Workslots Requested</a>
-                @endif
+
             </div>
         </div>
     </li>
@@ -125,6 +123,7 @@
             @elseif (auth()->user()->hasRole('Manager'))
                 <a class="collapse-item" href="{{ route('workslotbids.index') }}">View Workslot Bids</a>
                 <a class="collapse-item" href="{{ route('workslotbids.offer') }}">Offer Workslots</a>
+                <a class="collapse-item" href="{{ route('users.slots') }}">Workslots Requested</a>
             @endif
             </div>
         </div>
