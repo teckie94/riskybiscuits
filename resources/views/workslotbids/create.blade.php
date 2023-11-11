@@ -31,7 +31,7 @@
                     <tbody>
                         @foreach ($workslots as $workslot)
                             @php
-                                $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', auth()->user()->id)->where('status','>',0)->first();
+                                $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', auth()->user()->id)->first();
                             @endphp
                         <tr>
                         @if (!$existingBid)
