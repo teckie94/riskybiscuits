@@ -20,35 +20,44 @@
                 <table class="table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            {{-- <th width="15%">Shift Name</th> --}}
                             <th width="15%">Date</th>
+                            <th width="15%">Role</th>
                             <th width="15%">Start Time</th>
                             <th width="15%">End Time</th>
-                            <th width="15%">Role</th>
                             <th width="15%">Staff Required</th>
                             <th width="15%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                    
                         @foreach ($workslots as $workslot)
                             @php
-                                $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', auth()->user()->id)->where('status','>',0)->first();
+                                $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', auth()->user()->id)->first();
                             @endphp
+
                         <tr>
-                        @if (!$existingBid)
+                            {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
                             <td>{{ $workslot->start_date }}</td>
                             <td>{{ $workslot->start_time }}</td>
                             <td>{{ $workslot->end_time }}</td>
                             <td>{{$workslot->role->name}}</td>
                             <td>{{ $workslot->quantity }}</td>
+                           
                             <td style="display: flex">
-                                <form method="POST" action="{{ route('workslotbids.store') }}">
-                                    @csrf
-                                    <input type="hidden" name="work_slot_id" value="{{ $workslot->id }}">
-                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                    <button type="submit" class="btn btn-primary">Bid</button>
-                                </form>
+                            
+                         
+                                @if (!$existingBid)
+                                    <form method="POST" action="{{ route('workslotbids.store') }}">
+                                        @csrf
+                                        <input type="hidden" name="work_slot_id" value="{{ $workslot->id }}">
+                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                        <button type="submit" class="btn btn-primary">Bid</button>
+                                    </form>
+                                @else
+                                <span>-</span>
+                                @endif
                             </td>
-                        @endif
                         </tr>
                         @endforeach
                     </tbody>
