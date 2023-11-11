@@ -39,7 +39,7 @@
                     </thead>
                     <tbody>
                         @php
-                        $workslotbids = $workslotbids->where('status','<', 1);
+                        $workslotbids = $workslotbids->where('status','<=', 1);
                         @endphp
                         @foreach ($workslotbids as $workslotbid)
                         <tr>
