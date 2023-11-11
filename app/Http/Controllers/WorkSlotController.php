@@ -16,9 +16,9 @@ class WorkSlotController extends Controller
 {
 
     public function index()
-    {
+    {   
+        // Retrieve work slots that do not have a corresponding entry in the WorkSlotBid table
         $workSlots = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))->get();
-    
         return view('workslot.index', compact('workSlots'));
     }
     

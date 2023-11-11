@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StaffRoleBid;
+use App\Models\WorkSlotBid;
+use App\Models\WorkSlot;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
@@ -11,43 +14,41 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
-    }
 
-    /**
-     * User Profile
-     * @param Nill
-     * @return View Profile
-     * @author Shani Singh
-     */
+     public function index(Request $request)
+     {
+         $staffCount = User::where('role_id', 4)->count();
+     
+         $pendingStaffRoleApprovalCount = StaffRoleBid::whereHas('user', function ($query) {
+             $query->where('role_id', 4);
+         })->where('status', 0)->count();
+
+         $pendingWorkslotApprovalCount = WorkSlotBid::whereHas('user', function ($query) {
+            $query->where('role_id', 4);
+        })->where('status', 0)->count();
+
+         // Retrieve the count of work slots that do not have a corresponding entry in the WorkSlotBid table
+        $availableWorkslotsCount = WorkSlot::whereNotIn('id', WorkSlotBid::where('status', 1)->pluck('work_slot_id'))->count();
+
+        // Retrieve dynamic data, for example from your database
+        $revenueData = [$staffCount, $pendingStaffRoleApprovalCount, $availableWorkslotsCount];
+     
+         return view('home', compact('staffCount', 'pendingStaffRoleApprovalCount',
+         'pendingWorkslotApprovalCount', 'availableWorkslotsCount', 'revenueData'));
+     }
+     
+
     public function getProfile()
     {
         return view('profile');
     }
 
-    /**
-     * Update Profile
-     * @param $profileData
-     * @return Boolean With Success Message
-     * @author Shani Singh
-     */
     public function updateProfile(Request $request)
     {
         #Validations
@@ -79,12 +80,7 @@ class HomeController extends Controller
         }
     }
 
-    /**
-     * Change Password
-     * @param Old Password, New Password, Confirm New Password
-     * @return Boolean With Success Message
-     * @author Shani Singh
-     */
+   
     public function changePassword(Request $request)
     {
         $request->validate([
