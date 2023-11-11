@@ -29,12 +29,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
                         @foreach ($workslots as $workslot)
                             @php
-                                $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', auth()->user()->id);
+                                $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', auth()->user()->id)->where('status','>',0)->first();
                             @endphp
-
                         <tr>
                         @if (!$existingBid)
                             {{-- <td>{{ $workslot->time_slot_name }}</td> --}}
@@ -50,8 +48,6 @@
                                     <button type="submit" class="btn btn-primary">Bid</button>
                                 </form>
                             </td>
-                        @else
-                        <td colspan="5" style="text-align: center;"><span>No workslots available</span></td>
                         @endif
                         </tr>
                         @endforeach
