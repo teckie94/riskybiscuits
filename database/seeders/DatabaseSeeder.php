@@ -33,9 +33,6 @@ class DatabaseSeeder extends Seeder
             ->has(StaffRoleBid::factory()->count(1))
             ->has(WorkSlotBid::factory()->count(3))
             ->create();
-        // $workSlotBid = WorkSlotBid::factory()
-        //                     ->count(3)
-        //                     ->for(User::factory()->create())
-        //                     ->create();
+
     }
 }

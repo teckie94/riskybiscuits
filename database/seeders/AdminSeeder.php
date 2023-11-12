@@ -32,7 +32,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'owner@gmail.com',
             'mobile_number' =>  '82828282',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 2
+            'role_id'       => 2,
         ]);
 
         $user = User::create([
@@ -51,7 +51,7 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '83358421',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'requested_workslots' => 5
+            'requested_workslots' => 5,
         ]);
 
         $user = User::create([

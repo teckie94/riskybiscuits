@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('staff_role_bids', function (Blueprint $table) {
             $table->id();
             $table->integer('cafe_id')->default(1)->nullable();
-            $table->integer('staff_role_id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('staff_role_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('status')->default(0)->comment('Status:-1=Rejected; 0=Pending Approval; 1=Approved;');
             $table->text('remarks')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('staff_role_id')->references('id')->on('staff_roles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });

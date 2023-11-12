@@ -23,7 +23,6 @@ class WorkSlotSeeder extends Seeder
         $dayShiftInterval=0;
         $timeShiftInterval=0;
         $shiftName = 'Morning Shift';
-        $quantity = rand(1,5);
         
         for($i =0;$i<50;$i++){
 
@@ -60,7 +59,7 @@ class WorkSlotSeeder extends Seeder
                     'start_time' => $startTime,
                     'end_time' =>$endTime,
                     'staff_role_id' => $staffroleid,
-                    'quantity' => $quantity,
+                    'quantity' => rand(1,5),
                 ]);
                 $dayShiftInterval++;
                 $timeShiftInterval++;

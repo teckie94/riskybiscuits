@@ -13,7 +13,7 @@ class StaffRoleBidFactory extends Factory
         return [
             'staff_role_id' =>$this->faker->numberBetween(1,3),
             'user_id' => $this->faker->numberBetween(7,106),
-            'status' => $this->faker->numberBetween(-1,1),
+            'status' => 0,
         ];
     }
 

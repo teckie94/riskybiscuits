@@ -99,6 +99,7 @@ class WorkSlotBidController extends Controller
                             ->whereNull('deleted_at')
                             ->paginate(200);
         $users = User::query()
+                    ->whereNotNull('staff_role_id')
                 ->paginate(200);
         $staffroles = StaffRoles::query()
                             ->paginate(200);

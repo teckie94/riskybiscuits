@@ -17,7 +17,13 @@
     <!-- DataTables -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Offered Workslots</h6>
+            <h6 class="m-0 font-weight-bold text-primary">
+            @if(auth()->user()->hasRole('Staff'))
+                Offered Workslots
+            @elseif(auth()->user()->hasRole('Manager'))
+                Offer Workslots
+            @endif
+            </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -53,10 +59,11 @@
                                             <option selected disabled>Select User</option>
                                             @php
                                                 $roleUsers = $users->where('staff_role_id',$workslot->staff_role_id);
+                                            
                                             @endphp
                                             @foreach ($roleUsers as $user)
                                                 @php
-                                                    $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', $user->id)->where('status','>=','0')->first();
+                                                    $existingBid = $workslotbids->where('work_slot_id', $workslot->id)->where('user_id', $user->id)->where('status','>','-1')->first();
                                                 @endphp
                                                 @if(!$existingBid)
                                                 <option value="{{$user->id}}" name="user_id">{{$user->first_name.' '. $user->last_name}}</option>

@@ -17,7 +17,7 @@ class WorkSlotBidFactory extends Factory
         return [
             'work_slot_id' => $workSlot->id,
             'user_id' => User::query()->where($workSlot->staff_role_id,'=',DB::raw('staff_role_id')),
-            'status' => $this->faker->numberBetween(-1,1),
+            'status' =>0,
         ];
     }
 
