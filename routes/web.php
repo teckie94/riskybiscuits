@@ -94,6 +94,7 @@ Route::middleware(['auth'])->prefix('workslotbids')->name('workslotbids.')->grou
     Route::delete('/{workSlotBid}', [WorkSlotBidController::class, 'destroy'])->name('destroy');
     Route::get('/offer', [WorkSlotBidController::class, 'offer'])->name('offer');
     Route::post('/offer/store', [WorkSlotBidController::class, 'offerstore'])->name('offerstore');
+    Route::put('/offer/{workSlotBid}', [WorkSlotBidController::class, 'updateOffer'])->name('updateOffer');
 });
 
 //Workslots

@@ -81,7 +81,7 @@
                                 <td>{{ $workslots->find($workslotbid->work_slot_id)->start_date }}</td>
                                 <td>{{ $workslots->find($workslotbid->work_slot_id)->start_time
                                     . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
-                                <td>{{ $staffroles->find($workslots->find($workslotbid->work_slot_id))->name }}</td>
+                                <td>{{ $staffroles->find($workslots->find($workslotbid->work_slot_id)->staff_role_id)->name }}</td>
                                 <td>
                                     @if($workslotbid->status == 2)
                                         <span>Offered</span>
