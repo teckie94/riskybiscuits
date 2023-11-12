@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Faker;
+use Faker\Generator;
 
 class UserFactory extends Factory
 {
@@ -12,14 +14,18 @@ class UserFactory extends Factory
      *
      * @return array
      */
+
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'mobile_number' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => 'P@ssw0rd'. $this->faker->numberBetween(0, 20000000), // password
             'remember_token' => Str::random(10),
+            'role_id' => 4,
         ];
     }
 

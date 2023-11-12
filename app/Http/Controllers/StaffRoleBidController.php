@@ -32,25 +32,22 @@ class StaffRoleBidController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->role_id == 3) {
-            $staffrolebids = StaffRoleBid::paginate(10);
-            $staffroles = StaffRoles::paginate(10);
-            $users = User::paginate(10);
-            return view('staffrolebids.index', [
-                'staffrolebids' => $staffrolebids,
-                'staffroles' => $staffroles,
-                'users' => $users
-            ]);
+            if(auth()->user()->role_id == 3) {
+            $staffrolebids = StaffRoleBid::paginate(200);
+            $staffroles = StaffRoles::paginate(200);
+            $users = User::paginate(200);
+
         } else if(auth()->user()->role_id == 4 ) {
             $staffrolebids = StaffRoleBid::where('user_id', auth()->user()->id)->paginate(10);
             $staffroles = StaffRoles::paginate(10);
             $users = User::query()->where('id', auth()->user()->id)->paginate(10);
-            return view('staffrolebids.index', [
-                'staffrolebids' => $staffrolebids,
-                'staffroles' => $staffroles,
-                'users' => $users
-            ]);
+
         }
+        return view('staffrolebids.index')->with([
+            'staffrolebids' => $staffrolebids,
+            'staffroles' => $staffroles,
+            'users' => $users
+        ]);
     }
 
     public function create()

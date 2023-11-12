@@ -26,18 +26,18 @@ class WorkSlot extends Model
 
     //One to One Relationship
     //Each Work Slot can be created by one user
-    public function users() : BelongsTo{
+    public function users() {
         return $this->belongsTo(User::class,'id','user_id');
     }
 
     //One To Many Relationships
     //Each Work Slot is for One Staff Role
-    public function staffRole():HasOne
+    public function staffRole()
     {
-        return $this->hasOne(StaffRoles::class);
+        return $this->hasOne(StaffRoles::class,'id','staff_role_id');
     }
     //Each Work Slot has many Work Slot Bids
-    public function workSlotBid(): HasMany
+    public function workSlotBid()
     {
         return $this->hasMany(WorkSlotBid::class);
     }

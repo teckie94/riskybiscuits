@@ -26,9 +26,9 @@ class WorkSlotBidController extends Controller
     public function index()
     {
         if(auth()->user()->role_id == 3){
-            $workslotbids = WorkSlotBid::paginate(10);
-            $workslots = WorkSlot::paginate(10);
-            $users = User::paginate(10);
+            $workslotbids = WorkSlotBid::paginate(200);
+            $workslots = WorkSlot::paginate(200);
+            $users = User::paginate(200);
             return view('workslotbids.index', [
                 'workslotbids' => $workslotbids,
                 'workslots' => $workslots,
@@ -36,9 +36,9 @@ class WorkSlotBidController extends Controller
             ]);
             
         } elseif(auth()->user()->role_id == 4) {
-            $workslotbids = WorkSlotBid::where('user_id', auth()->user()->id)->paginate(10);
-            $workslots = WorkSlot::paginate(10);
-            $users = User::query()->where('id', auth()->user()->id)->paginate(10);
+            $workslotbids = WorkSlotBid::where('user_id', auth()->user()->id)->paginate(200);
+            $workslots = WorkSlot::paginate(200);
+            $users = User::query()->where('id', auth()->user()->id)->paginate(200);
             return view('workslotbids.index', [
                 'workslotbids' => $workslotbids,
                 'workslots' => $workslots,
@@ -52,11 +52,11 @@ class WorkSlotBidController extends Controller
         $workslots = WorkSlot::query()
                             ->where('staff_role_id', auth()->user()->staff_role_id)
                             ->whereNull('deleted_at')
-                            ->paginate(10);
+                            ->paginate(200);
         $workslotbids = WorkSlotBid::query()
                             ->where('user_id', auth()->user()->id)
                             ->whereNull('deleted_at')
-                            ->paginate(10);
+                            ->paginate(200);
         return view('workslotbids.create', [
             'workslots' => $workslots,
             'workslotbids' => $workslotbids,
@@ -94,14 +94,14 @@ class WorkSlotBidController extends Controller
     {
         $workslots = WorkSlot::query()
                             ->whereNull('deleted_at')
-                            ->paginate(10);
+                            ->paginate(200);
         $workslotbids = WorkSlotBid::query()
                             ->whereNull('deleted_at')
-                            ->paginate(10);
+                            ->paginate(200);
         $users = User::query()
-                ->paginate(10);
+                ->paginate(200);
         $staffroles = StaffRoles::query()
-                            ->paginate(10);
+                            ->paginate(200);
         return view('workslotbids.offer', [
             'workslots' => $workslots,
             'workslotbids' => $workslotbids,

@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 
-use App\Models\Cafes;
+use App\Models\User;
+use App\Models\StaffRoleBid;
 use App\Models\WorkSlot;
+use App\Models\WorkSlotBid;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,7 +29,13 @@ class DatabaseSeeder extends Seeder
             WorkSlotBidSeeder::class,
         ]);
 
-        Cafes::factory(5)->create();
-
+        $user = User::factory(100)
+            ->has(StaffRoleBid::factory()->count(1))
+            ->has(WorkSlotBid::factory()->count(3))
+            ->create();
+        // $workSlotBid = WorkSlotBid::factory()
+        //                     ->count(3)
+        //                     ->for(User::factory()->create())
+        //                     ->create();
     }
 }

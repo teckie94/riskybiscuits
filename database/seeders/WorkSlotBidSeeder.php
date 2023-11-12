@@ -36,5 +36,8 @@ class WorkSlotBidSeeder extends Seeder
             'user_id' => 6,
             'status' => 0,
         ]);
+        
+
+        
     }
 }

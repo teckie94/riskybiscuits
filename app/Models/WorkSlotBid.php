@@ -22,8 +22,12 @@ class WorkSlotBid extends Model
     ];
 
         //Each Work Slot has many Work Slot Bids
-        public function workSlot(): HasOne
+        public function workSlot()
         {
-            return $this->hasOne(WorkSlot::class);
+            return $this->belongsTo(WorkSlot::class, 'id','work_slot_id');
+        }
+        public function user()
+        {
+            return $this->belongsTo(User::class,'id','user_id');
         }
 }

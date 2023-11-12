@@ -15,17 +15,17 @@ class StaffRoleSeeder extends Seeder
     public function run()
     {
         StaffRoles::create([
+            'name' => 'Cashier',
+            'role_id' => '4'
+        ]);
+
+        StaffRoles::create([
             'name' => 'Chef',
             'role_id' => '4'
         ]);
 
         StaffRoles::create([
             'name' => 'Waiter',
-            'role_id' => '4'
-        ]);
-
-        StaffRoles::create([
-            'name' => 'Cashier',
             'role_id' => '4'
         ]);
 
