@@ -41,7 +41,7 @@
                 @endif
                 @if(auth()->user()->hasRole('SuperAdmin'))
                 <a class="collapse-item" href="{{ route('users.create') }}">Add New User</a>
-                <a class="collapse-item" href="{{ route('users.import') }}">Import Users</a>
+                {{-- <a class="collapse-item" href="{{ route('users.import') }}">Import Users</a> --}}
                 @endif
                 @if(auth()->user()->hasRole('Manager'))
                 <a class="collapse-item" href="{{ route('users.slots') }}">Edit Workslots Requested</a>
@@ -55,7 +55,7 @@
 
 
     <!-- Nav Item - WORKSLOTS -->
-    @if(auth()->user()->hasRole('SuperAdmin')  || auth()->user()->hasRole('CafeOwner'))
+    @if(auth()->user()->hasRole('CafeOwner'))
     <div class="sidebar-heading">
         Workslots
     </div>
