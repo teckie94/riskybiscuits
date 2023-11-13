@@ -137,8 +137,6 @@ class WorkSlotBidController extends Controller
             DB::rollBack();
             return redirect()->route('workslotbids.offer')->with('error',$th->getMessage());
         }
-
-
     }
 
 
@@ -164,7 +162,28 @@ class WorkSlotBidController extends Controller
             return redirect()->route('workslotbids.index',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
         }
     }
+    public function updateOffer(Request $request, WorkSlotBid $workSlotBid)
+    {
+        // Validate Request
+        $request->validate([
+            'status' => 'required',
+        ]);
 
+        DB::beginTransaction();     
+        try {
+            
+            $workSlotBid->update([
+                'status' => $request->status,
+                'remarks' =>$request->remarks,
+            ]);
+            DB::commit();
+
+            return redirect()->route('workslotbids.offer')->with('success','Work Slot Offer updated successfully.');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->route('workslotbids.offer',['workSlotBid' => $workSlotBid])->with('error',$th->getMessage());
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *
