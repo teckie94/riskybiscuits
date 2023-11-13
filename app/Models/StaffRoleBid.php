@@ -22,8 +22,10 @@ class StaffRoleBid extends Model
         'remarks'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+    public function user(){
+        return $this->belongsTo(User::class,'id','user_id');
+    }
+    public function staffRole(){
+        return $this->belongsTo(StaffRoles::class,'id', 'staff_role_id');
     }
 }

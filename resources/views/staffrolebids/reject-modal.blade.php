@@ -15,7 +15,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <form id="staffRoleBidReject-{{ $staffrolebid->id }}" method="POST" action="{{ route('staffrolebid.update', ['staffRoleBid' => $staffrolebid->id]) }}">
+                <form id="staffRoleBidReject-{{ $staffrolebid->id }}" method="POST" action="{{ route('staffrolebids.update', ['staffRoleBid' => $staffrolebid->id]) }}">
                     @csrf
                     @method('PUT')
                 <a class="btn btn-danger" href="{{ route('logout') }}"

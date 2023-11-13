@@ -65,11 +65,14 @@ class User extends Authenticatable
         return $this->belongsTo(StaffRoles::class, 'staff_role_id');
     }
 
-    public function workSlotBids()
+    public function staffRoleBid()
+    {
+        return $this->hasOne(StaffRoleBid::class);
+    }
+
+    public function workSlotBid()
     {
         return $this->hasMany(WorkSlotBid::class);
     }
-
-
 
 }

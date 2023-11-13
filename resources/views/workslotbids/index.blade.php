@@ -31,32 +31,21 @@
                             <th width="15%">Time</th>
                             <th width="10%">Role</th>
                             @if(auth()->user()->role_id == 3)
-                            <th width="25%">Staff Name</th>
+                            <th width="15%">User Name</th>
                             @endif
-                            <th width="15%">Applied On</th>
+                            <th width="20%">Applied On</th>
                             <th width="15%">Status</th>
-                            <th width="20%">Action</th>
+                            <th width="10%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                        $workslotbids = $workslotbids->where('status','<=', 1);
+                        @endphp
                         @foreach ($workslotbids as $workslotbid)
                         <tr>
-                            <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_date }}</td>
-                            
-                            <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_time .
-                            ' - ' . optional($workslots->find($workslotbid->work_slot_id))->end_time }}</td>
-
-                            <td>
-                                @if(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 1)
-                                    Chef
-                                @elseif(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 2)
-                                    Waiter
-                                @elseif(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 3)
-                                    Cashier
-                                @endif
-                            </td>
-
-
+                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_date}}</td>
+                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
                             @if(auth()->user()->role_id == 3)
                                 <td>{{ optional($users->find($workslotbid->user_id))->first_name . 
                                 ' ' . optional($users->find($workslotbid->user_id))->last_name }}</td>
@@ -73,7 +62,6 @@
                                     Pending Approval
                                 @endif
                             </td>
-                            
                             @if((auth()->user()->role_id==4) && ($workslotbid->status == 0))
                             <td class="form-control-user" style="display: flex">
                                 <a id="btnDelete" class="btn-sm btn-danger m-2" href="#" data-toggle="modal" 
@@ -88,7 +76,6 @@
                                     data-target="#approveModal{{$workslotbid->id}}">
                                     <i class="fas fa-check"></i>
                                 </a>
-                                
                                 <a id="btnReject" class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
                                     data-target="#rejectModal{{$workslotbid->id}}">
                                     <i class="fas fa-times"></i>
@@ -99,10 +86,12 @@
                             <td>-</td>
                             @endif
                         </tr>
+                        @php
+                            $previousBid = $workslotbid;
+                        @endphp
                         @endforeach
                     </tbody>
                 </table>
-                {{$workslotbids->links()}}
             </div>
         </div>
     </div>

@@ -114,6 +114,7 @@ class WorkSlotController extends Controller
                 'start_time'                => 'required',
                 'end_time'                  => 'required',
                 'quantity'                  => 'required|numeric|min:1',
+                'quantity'                  => 'required|numeric|min:1',
         ]);
 
             DB::beginTransaction();

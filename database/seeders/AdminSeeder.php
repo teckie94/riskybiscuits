@@ -32,7 +32,7 @@ class AdminSeeder extends Seeder
             'email'         =>  'owner@gmail.com',
             'mobile_number' =>  '82828282',
             'password'      =>  Hash::make('111'),
-            'role_id'       => 2
+            'role_id'       => 2,
         ]);
 
         $user = User::create([
@@ -45,33 +45,36 @@ class AdminSeeder extends Seeder
         ]);
 
         $user = User::create([
-            'first_name'    => 'Cafe',
-            'last_name'     => 'Staff 1',
+            'first_name'    => 'Test',
+            'last_name'     => 'Cashier',
             'email'         =>  'staff1@gmail.com',
             'mobile_number' =>  '83358421',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'requested_workslots' => 5
+            'requested_workslots' => 5,
+            'staff_role_id' => 1
         ]);
 
         $user = User::create([
-            'first_name'    => 'Cafe',
-            'last_name'     => 'Staff 2',
+            'first_name'    => 'Test',
+            'last_name'     => 'Chef',
             'email'         =>  'staff2@gmail.com',
             'mobile_number' =>  '83358422',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'requested_workslots' => 5
+            'requested_workslots' => 5,
+            'staff_role_id' => 2
         ]);
 
         $user = User::create([
-            'first_name'    => 'Cafe',
-            'last_name'     => 'Staff 3',
+            'first_name'    => 'Test',
+            'last_name'     => 'Waiter',
             'email'         =>  'staff3@gmail.com',
             'mobile_number' =>  '83358423',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'requested_workslots' => 5
+            'requested_workslots' => 5,
+            'staff_role_id' => 3
         ]);
 
         $user = User::create([
