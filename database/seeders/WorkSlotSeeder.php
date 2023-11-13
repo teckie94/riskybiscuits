@@ -24,7 +24,7 @@ class WorkSlotSeeder extends Seeder
         $timeShiftInterval=0;
         $shiftName = 'Morning Shift';
         
-        for($i =0;$i<5;$i++){
+        for($i =0;$i<50;$i++){
 
             for($staffroleid=1;$staffroleid<=3;$staffroleid++){
                 

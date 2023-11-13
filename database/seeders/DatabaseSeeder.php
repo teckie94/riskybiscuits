@@ -43,9 +43,9 @@ class DatabaseSeeder extends Seeder
         //     'work_slot_id' => $workslots->id,
         //     'user_id' => $users->id
         // ]);
-        $staffrolebids = StaffRoleBid::factory(10)
+        $staffrolebids = StaffRoleBid::factory(100)
                         ->create();
-        $workslotbids = WorkSlotBid::factory(10)->create();
+        $workslotbids = WorkSlotBid::factory(100)->create();
 
     }
 }
