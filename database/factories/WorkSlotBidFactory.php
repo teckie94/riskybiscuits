@@ -16,7 +16,8 @@ class WorkSlotBidFactory extends Factory
         $user=User::all()->where('staff_role_id','!=',null)->random();
         $workslotId = Workslot::query()
         ->where('staff_role_id',$user->staff_role_id)
-        ->first();
+        ->get()
+        ->random();
         return [
             'user_id' => $user->id,
             'work_slot_id' => $workslotId,

@@ -52,6 +52,7 @@ class AdminSeeder extends Seeder
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
             'requested_workslots' => 5,
+            'staff_role_id' => 1
         ]);
 
         $user = User::create([
@@ -62,6 +63,7 @@ class AdminSeeder extends Seeder
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
             'requested_workslots' => 5,
+            'staff_role_id' => 2
         ]);
 
         $user = User::create([
@@ -72,6 +74,7 @@ class AdminSeeder extends Seeder
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
             'requested_workslots' => 5,
+            'staff_role_id' => 3
         ]);
     }
 }
