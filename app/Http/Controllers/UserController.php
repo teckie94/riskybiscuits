@@ -34,7 +34,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::with('roles', 'staffRole')->paginate(10);
+        $users = User::all();
+       /*  $users = User::with('roles', 'staffRole')->paginate(200); */
         return view('users.index', ['users' => $users]);
     }
 
@@ -132,8 +133,11 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        $staffRoles = StaffRoles::all();
         $roles = Role::all();
+        
         return view('users.edit')->with([
+            'staffRoles'=> $staffRoles,
             'roles' => $roles,
             'user'  => $user
         ]);

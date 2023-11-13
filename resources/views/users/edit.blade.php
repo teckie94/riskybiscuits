@@ -92,7 +92,7 @@
                         @enderror
                     </div>
 
-                    {{-- Role --}}
+                    {{-- User Type --}}
                     <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
                         <span style="color:red;">*</span>Role</label>
                         <select class="form-control form-control-user @error('role_id') is-invalid @enderror" name="role_id">
@@ -105,6 +105,23 @@
                             @endforeach
                         </select>
                         @error('role_id')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+
+                    {{-- Staff Role --}}
+                    <div class="col-sm-6 mb-3 mt-3 mb-sm-0">
+                        <span style="color:red;">*</span>Staff Role</label>
+                        <select class="form-control form-control-user @error('staff_role_id') is-invalid @enderror" name="staff_role_id">
+                            <option selected disabled>Select Staff Role</option>
+                            @foreach ($staffRoles as $staffRole)
+                                <option value="{{$staffRole->id}}" 
+                                    {{old('staff_role_id') ? ((old('staff_role_id') == $staffRole->id) ? 'selected' : '') : (($user->staff_role_id == $staffRole->id) ? 'selected' : '')}}>
+                                    {{$staffRole->name}}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('staff_role_id')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

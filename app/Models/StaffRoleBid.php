@@ -23,7 +23,7 @@ class StaffRoleBid extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class,'id','user_id');
+        return $this->belongsTo(User::class,'user_id', 'id',);
     }
     public function staffRole(){
         return $this->belongsTo(StaffRoles::class,'id', 'staff_role_id');

@@ -21,7 +21,7 @@ class WorkSlotBidFactory extends Factory
         return [
             'user_id' => $user->id,
             'work_slot_id' => $workslotId,
-            'status' =>$this->faker->numberBetween(-1,3),
+            'status' =>$this->faker->numberBetween(-1,1),
         ];
     }
 

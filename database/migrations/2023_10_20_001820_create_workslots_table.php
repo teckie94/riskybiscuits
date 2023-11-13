@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->time('start_time'); // Example: 09:00:00
             $table->time('end_time'); // Example: 15:00:00
-            $table->unsignedBigInteger('staff_role_id')->comment('1=Chef, 2=Waiter, 3=Cashier');
+            $table->unsignedBigInteger('staff_role_id')->comment('1=Cashier, 2=Chef, 3=Waiter');
             $table->integer('quantity');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();

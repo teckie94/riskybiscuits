@@ -44,8 +44,22 @@
                         @endphp
                         @foreach ($workslotbids as $workslotbid)
                         <tr>
-                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_date}}</td>
-                            <td>{{$workslots->find($workslotbid->work_slot_id)->start_time . ' - ' . $workslots->find($workslotbid->work_slot_id)->end_time}}</td>
+                            <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_date }}</td>
+                            
+                            <td>{{ optional($workslots->find($workslotbid->work_slot_id))->start_time .
+                            ' - ' . optional($workslots->find($workslotbid->work_slot_id))->end_time }}</td>
+
+                            <td>
+                                @if(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 1)
+                                    Cashier
+                                @elseif(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 2)
+                                    Chef
+                                @elseif(optional($workslots->find($workslotbid->work_slot_id))->staff_role_id == 3)
+                                    Waiter
+                                @endif
+                            </td>
+
+
                             @if(auth()->user()->role_id == 3)
                                 <td>{{ optional($users->find($workslotbid->user_id))->first_name . 
                                 ' ' . optional($users->find($workslotbid->user_id))->last_name }}</td>
@@ -62,6 +76,7 @@
                                     Pending Approval
                                 @endif
                             </td>
+                            
                             @if((auth()->user()->role_id==4) && ($workslotbid->status == 0))
                             <td class="form-control-user" style="display: flex">
                                 <a id="btnDelete" class="btn-sm btn-danger m-2" href="#" data-toggle="modal" 
@@ -76,6 +91,7 @@
                                     data-target="#approveModal{{$workslotbid->id}}">
                                     <i class="fas fa-check"></i>
                                 </a>
+                                
                                 <a id="btnReject" class="btn-sm btn-danger m-2" href="#" data-toggle="modal"
                                     data-target="#rejectModal{{$workslotbid->id}}">
                                     <i class="fas fa-times"></i>
@@ -92,6 +108,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{-- {{$workslotbids->links()}} --}}
             </div>
         </div>
     </div>

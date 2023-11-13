@@ -27,15 +27,15 @@ class HomeController extends Controller
         $user = auth()->user();
 
         //Total number of workslot bids for the logged-in user
-        $totalWorkSlotBids = $user->workSlotBids()->count();
+        $totalWorkSlotBids = $user->workSlotBid()->count();
 
         //Total number of approved workslot bids for the logged-in user
-        $approvedWorkSlotBids = $user->workSlotBids()->where('status', 1)->count();
+        $approvedWorkSlotBids = $user->workSlotBid()->where('status', 1)->count();
 
          $staffCount = User::where('role_id', 4)->count();
-         $chefCount = User::where('staff_role_id', 1)->count();
-         $waiterCount = User::where('staff_role_id', 2)->count();
-         $cashierCount = User::where('staff_role_id', 3)->count();
+         $chefCount = User::where('staff_role_id', 2)->count();
+         $waiterCount = User::where('staff_role_id', 3)->count();
+         $cashierCount = User::where('staff_role_id', 1)->count();
      
          $pendingStaffRoleApprovalCount = StaffRoleBid::whereHas('user', function ($query) {$query->where('role_id', 4);
          })->where('status', 0)->count();
@@ -49,9 +49,9 @@ class HomeController extends Controller
         ->count();
 
         //Calling function and passing in staff_role_id as the parameter
-        $availableWorkslotsCountForChef = $this->getAvailableWorkslotsCount(1);
-        $availableWorkslotsCountForWaiter = $this->getAvailableWorkslotsCount(2);
-        $availableWorkslotsCountForCashier = $this->getAvailableWorkslotsCount(3);
+        $availableWorkslotsCountForChef = $this->getAvailableWorkslotsCount(2);
+        $availableWorkslotsCountForWaiter = $this->getAvailableWorkslotsCount(3);
+        $availableWorkslotsCountForCashier = $this->getAvailableWorkslotsCount(1);
 
         //Retrieve dynamic data for the pie chart
         $countData = [$chefCount, $cashierCount, $waiterCount];

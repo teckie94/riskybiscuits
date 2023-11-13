@@ -40,7 +40,7 @@ class StaffRoleBidSeeder extends Seeder
         ]);
         $workslot = StaffRoleBid::create([
             'cafe_id'=> 1,
-            'staff_role_id'=> 1,
+            'staff_role_id'=> 3,
             'user_id'=> 7,
             'status'=> 0,
             ]);

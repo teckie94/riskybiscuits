@@ -31,9 +31,9 @@
                                     {{ $pendingStaffRoleApprovalCount }}
                                 @elseif(auth()->user()->role_id == 4)
                                     @switch(auth()->user()->staff_role_id)
-                                        @case(1) {{ $availableWorkslotsCountForChef }} @break
-                                        @case(2) {{ $availableWorkslotsCountForWaiter }} @break
-                                        @case(3) {{ $availableWorkslotsCountForCashier }} @break
+                                        @case(1) {{ $availableWorkslotsCountForCashier }} @break
+                                        @case(2) {{ $availableWorkslotsCountForChef }} @break
+                                        @case(3) {{ $availableWorkslotsCountForWaiter }} @break
                                         @default <!-- Non Assigned --> @break
                                     @endswitch
                                 @endif

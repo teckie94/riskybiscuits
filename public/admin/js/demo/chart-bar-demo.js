@@ -32,15 +32,15 @@ var myBarChart = new Chart(ctx, {
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 10
+          maxTicksLimit: 7
         },
         maxBarThickness: 25,
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 10,
-          maxTicksLimit: 10,
+          max: 30,
+          maxTicksLimit: 8,
           padding: 10,
           callback: function(value, index, values) {
             return number_format(value);
