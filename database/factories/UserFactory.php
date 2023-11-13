@@ -26,6 +26,7 @@ class UserFactory extends Factory
             'password' => 'P@ssw0rd'. $this->faker->numberBetween(0, 20000000), // password
             'remember_token' => Str::random(10),
             'role_id' => 4,
+            'staff_role_id'=>$this->faker->numberBetween(1,3)
         ];
     }
 

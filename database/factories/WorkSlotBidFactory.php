@@ -13,11 +13,14 @@ class WorkSlotBidFactory extends Factory
 
     public function definition()
     {
-        $workSlot = Workslot::all()->random();
+        $user=User::all()->where('staff_role_id','!=',null)->random();
+        $workslotId = Workslot::query()
+        ->where('staff_role_id',$user->staff_role_id)
+        ->first();
         return [
-            'work_slot_id' => $workSlot->id,
-            'user_id' => User::query()->where($workSlot->staff_role_id,'=',DB::raw('staff_role_id')),
-            'status' =>0,
+            'user_id' => $user->id,
+            'work_slot_id' => $workslotId,
+            'status' =>$this->faker->numberBetween(-1,3),
         ];
     }
 

@@ -61,7 +61,7 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '83358422',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'requested_workslots' => 5
+            'requested_workslots' => 5,
         ]);
 
         $user = User::create([
@@ -71,7 +71,7 @@ class AdminSeeder extends Seeder
             'mobile_number' =>  '83358423',
             'password'      =>  Hash::make('111'),
             'role_id'       => 4,
-            'requested_workslots' => 5
+            'requested_workslots' => 5,
         ]);
     }
 }

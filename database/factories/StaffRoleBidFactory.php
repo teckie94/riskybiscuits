@@ -4,16 +4,18 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-
+use App\Models\User;
 class StaffRoleBidFactory extends Factory
 {
 
     public function definition()
     {
         return [
-            'staff_role_id' =>$this->faker->numberBetween(1,3),
-            'user_id' => $this->faker->numberBetween(7,106),
-            'status' => 0,
+            'user_id' => User::factory(),
+            'staff_role_id' =>function (array $attributes){
+                return User::find($attributes['user_id'])->staff_role_id;
+            },
+            'status' => 1,
         ];
     }
 
